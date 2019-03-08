@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!DOCTYPE slides SYSTEM "../slides-full.dtd">
+<?dbhtml graphics-dir="./graphics"?>
+<?dbhtml css-stylesheet="./browser/slides.css"?>
+<?dbhtml script-dir="./browser"?>
+<slides lang="es">
+ <slidesinfo>
+  <title><acronym>SLEC</acronym></title>
+  <author>
+   <firstname>Jaime</firstname>
+   <othername role="mi">Irving</othername>
+   <surname>Dávila</surname>
+  </author>
+  <date>14 de Mayo de 2002</date>
+  <legalnotice>
+   <para>Este documento se cede al dominio público</para>
+  </legalnotice>
+ </slidesinfo>
+ <section>
+  <title>Presentación</title>
+  <foil>
+   <title><acronym>SLEC</acronym>: Software de libre redistribución y
+    educación en Colombia.</title>
+   
+   <para>Es una comunidad <wordasword>virtual</wordasword> de cerca de
+    120 voluntarios, democrática y sin jerarquías cuyos objetivos son:</para>
+
+   <itemizedlist>
+    <listitem>
+    <para>Informar, apoyar y organizar eventos y actividades sin
+      ánimo de lucro relacionadas con software de libre redistribución
+      y educación en Colombia.</para>
+    </listitem>
+   
+    <listitem>
+     <para>Brindar soporte gratuito en el uso y desarrollo de software
+      de libre redistribución a instituciones educativas colombianas.</para>
+    </listitem>
+   </itemizedlist>
+  </foil>
+ </section>
+ <section>
+  <title>Algunos proyectos y servicios.</title>
+  <foil>
+   <title>Portal de Noticias </title>
+
+   <para>En <ulink url="http://ingenieria.sanmartin.edu.co/slec"></ulink>,
+    los miembros de <acronym>SLEC</acronym> pueden publicar noticias o
+    anunciar eventos como:</para>
+   <itemizedlist>
+    <listitem>
+     <para>Curso gratuito de administración y redes Linux para colegios.</para>
+    </listitem>
+    <listitem>
+     <para>Seminario de Software Libre y Educación en Colombia.</para>
+    </listitem>
+    <listitem>
+     <para>Curso-Taller de <acronym>HB</acronym>.</para>
+    </listitem>
+    <listitem>
+     <para>Noticias de adopción de software libre de libre
+      distribución en Perú, España, Suráfrica, Malasia.</para>
+    </listitem>
+   </itemizedlist>
+   <para>El sistema se basa en <acronym>HB</acronym> y
+    <application>FuWeb</application>, software libre colombiano.</para>
+   <informalfigure>
+    <mediaobject>
+     <imageobject>
+      <imagedata fileref="portal.png" format="png" scale="30"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+
+  </foil>
+  <foil>
+   <title>Estadísticas.</title>
+
+   <para>Varios voluntarios de <acronym>SLEC</acronym> mantienen
+    estadísticas sobre el uso de software de libre redistribución en
+    instituciones educativas colombianas.</para>
+
+   <para>Estos son algunos colegios que usan software de libre
+    redistribución en el país:</para>
+   <itemizedlist>
+    <listitem>
+     <para>En Bogotá, el Gimnasio Fidel Cano.</para>
+    </listitem>
+    <listitem>
+     <para>En Barranquilla, el Colegio Cristiano J. Vender Murphy.</para>
+    </listitem>
+    <listitem>
+     <para>En Neiva, el Colegio Adventista de Neiva.</para>
+    </listitem>
+    <listitem>
+     <para>En Ocaña, el Don Bosco College.</para>
+    </listitem>
+    <listitem>
+     <para>En Pasto, el Colegio San Francisco Javier.</para>
+    </listitem>
+   </itemizedlist>
+
+   <informalfigure>
+    <mediaobject>
+     <imageobject>
+      <imagedata fileref="mapa.jpg" format="jpg" scale="15"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+
+  </foil>
+
+  <foil>
+   <title>Servidor de <acronym>SLEC</acronym>.</title>
+
+   <itemizedlist>
+    <listitem>
+     <para>Se planteó la necesidad de donar las partes para construir un
+      computador con conexión a <foreignphrase>Internet</foreignphrase>.</para>
+    </listitem>
+    <listitem>
+     <para>El objetivo de tal servidor es servir sin ánimo de lucro a
+      proyectos sin ánimo de lucro que promuevan paz, colaboración,
+      educación, salud, justicia, libertad y valores constructivos
+      especialmente para Colombia.</para>
+    </listitem>
+    <listitem>
+     <para>Tal computador se encuentra actualmente construido y tiene
+      como sistema operacional a <wordasword>Debian</wordasword>
+      <acronym>Linux</acronym>. Actualmente se está gestionado su
+      conexión a Internet</para>
+    </listitem>
+   </itemizedlist>
+
+  </foil>
+
+  <foil>
+   <title>Traducciones</title>
+   <para>De forma colaborativa y a través de una herramienta llamada
+    <application>PyWiki</application> se han traducido los reportes de
+    <acronym>SEUL/Edu</acronym>, una organización a nivel mundial que
+    tiene como tema el uso de Linux en instituciones
+    educativas.</para>
+  
+   <informalfigure>
+    <mediaobject>
+     <imageobject>
+      <imagedata fileref="wiki.png" format="png" scale="60"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+
+  </foil>
+
+
+ </section>
+
+</slides>
+

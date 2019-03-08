@@ -1,0 +1,833 @@
+<HTML
+><HEAD
+><TITLE
+>Paquetes y portes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="Notas sobre OpenBSD 3.2 como sistema de escritorio"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Sobre la instalación"
+HREF="x51.htm"><LINK
+REL="NEXT"
+TITLE="Configuración de algunos programas"
+HREF="x487.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Notas sobre OpenBSD 3.2 como sistema de escritorio</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x51.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x487.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="PAQUETES-Y-PORTES"
+>Paquetes y portes</A
+></H1
+><P
+>Diversos programas han sido portados a OpenBSD, a las fuentes
+      portadas se les llama portes y a los binarios de alguno de los
+      portes compilados para alguna plataforma se les llama paquetes.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PAQUETES"
+>Paquetes</A
+></H2
+><P
+>	Cada paquete es un archivo <TT
+CLASS="LITERAL"
+>.tgz</TT
+> que incluye 
+	información de dependencias y scripts para instalar
+	y desinstalar.  
+       	Para manejarlos se emplean los programas
+	<B
+CLASS="COMMAND"
+>pkg_add</B
+>, <B
+CLASS="COMMAND"
+>pkg_delete</B
+>,
+	<B
+CLASS="COMMAND"
+>pkg_info</B
+> y <B
+CLASS="COMMAND"
+>pkg_create</B
+>.  
+	El programa <B
+CLASS="COMMAND"
+>pkg_add</B
+> instala un paquete y
+	todos los que este requiera, usando para descargarlos lo(s)
+	repositorio(s) especificada(s) en la variable de ambiente
+	<TT
+CLASS="LITERAL"
+>PKG_PATH</TT
+>, por esto en el archivo
+	<TT
+CLASS="FILENAME"
+>~/.profile</TT
+> o en
+	<TT
+CLASS="FILENAME"
+>~/.xsession</TT
+> de root vale la pena agregar: 
+	<PRE
+CLASS="SCREEN"
+>	export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/3.2/packages/i386 </PRE
+>
+	o la vía del CD-ROM 1 o una vía de un espejo más rápido para su caso.  
+	Una vez establecida esta variable, para agregar por ejemplo el paquete 
+	<TT
+CLASS="FILENAME"
+>vim-6.1.184-no_x11.tgz</TT
+>:
+        <PRE
+CLASS="SCREEN"
+>pkg_add $PKG_PATH/vim-6.1.184-no_x11.tgz </PRE
+>
+	Puede ver la lista de paquetes instalados en su sistema con 
+	<B
+CLASS="COMMAND"
+>pkg_info -a</B
+>, podrá desinstalar uno con
+       	<B
+CLASS="COMMAND"
+>pkg_delete</B
+> seguido del nombre del paquete (con
+	la opción <TT
+CLASS="LITERAL"
+>-f</TT
+> se forzara la eliminación aún
+	si hay paquetes que dependan del que quita ---que puede ser útil
+	si está actualizando un paquete).
+      </P
+><P
+>Podrá ver los paquetes disponibles para instalar en el primer 
+	correo que llega a la cuenta root (use <B
+CLASS="COMMAND"
+>mail</B
+> para 
+	verlo) o en 
+	<A
+HREF="http://www.openbsd.org/3.2_packages/i386.html"
+TARGET="_top"
+>	  http://www.openbsd.org/3.2_packages/i386.html</A
+>. A
+	continuación destacamos algunos que permiten tener un ambiente
+	para producir documentos y programar (según el gusto del autor de este
+	escrito): 
+
+	<DIV
+CLASS="TABLE"
+><A
+NAME="AEN330"
+></A
+><P
+><B
+>Tabla 2. Algunos paquetes disponibles apropiados
+	    para preparación de documentos</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Paquete</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>vim-6.1.184-no_x11.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Editor vi mejorado.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>teTeX_base-1.0.7.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Ejecutables de TeX.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>teTeX_texmf-1.0.2.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Archivos de soporte de TeX.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>libxslt-1.0.20.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Librería para procesamiento de XSLT incluye el interprete de XSLT xsltproc.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>docbook-4.1.2.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DTD de DocBook.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>docbook-dsssl-1.72.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Hojas de éstilo modulares DSSSL para DocBook.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>openjade-1.3.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Parser XML y motor de DSSSL.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>jadetex-3.11.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Macros para OpenJade para TeX.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>mtools-3.9.8-20010819.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Herramientas para manejar disquetes DOS.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>tcl-8.3.4.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Tool Command Language.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>tk-8.3.4.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Herramientas gráficas para TCL.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>gimp-1.2.3.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Graficador similar a Photo Shop.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>gv-3.5.8.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Visualizador de PostScript y PDF.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>w3m-0.3.1.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Navegador web modo texto.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>xmix-2.1.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Mezclador.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>xcdplayer-2.2.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Reproductor de CDs.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>sox-12.17.3.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Reproductor y conversor de formatos de sonido.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>xmms-1.2.7</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Reproductor Multimedia.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>vorbis-tools-1.0</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Para escuchar y codificar
+    en formato Ogg Vorbis.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>antiword-0.33</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Convierte formato de MS Word (.doc)
+    a texto plano.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>freetype-1.3.1.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Motor para emlear fuentes TrueType</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ocaml-3.06.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Lenguaje funcional Ocaml. </TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>graphviz-1.7.6.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Visualizador de grafos.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>hevea-1.05.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Conversor de LaTeX a HTML.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ispell-3.2.06.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Corrector ortográfico</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>xfce-3.8.16.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Escritorio liviano</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+Además de los anteriores si su computador está en una red:
+
+	<DIV
+CLASS="TABLE"
+><A
+NAME="AEN416"
+></A
+><P
+><B
+>Tabla 3. Algunos paquetes disponibles para
+	    computadores en red</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Paquete</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>mutt-1.4i.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>MUA</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>exim-3.34.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>MTA con una configuración sencilla</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>procmail-3.22.tgz</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Para procesar correos automáticamente</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PORTES"
+>Portes</A
+></H2
+><P
+> Aunque NetBSD y FreeBSD tienen más programas portados que
+	OpenBSD, la colección de portes de OpenBSD ya cuenta con más de
+	1600 programas.  Puede verse la evolución de los portes en: 
+        <PRE
+CLASS="SCREEN"
+>http://www.openbsd.org/portsplus/</PRE
+>
+      y más información sobre portes y paquetes en:
+        <PRE
+CLASS="SCREEN"
+>http://www.openbsd.org/ports.html</PRE
+>
+      </P
+><P
+> Si desea ayudar a portar aplicaciones a OpenBSD o tener a mano
+      las fuentes de los portes (diferencias, makefiles y scripts):
+      <PRE
+CLASS="SCREEN"
+>cd /usr
+export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+cvs -z3 -q get -rOPENBSD_3_2 -P ports </PRE
+>
+    </P
+><P
+>      La vía para <TT
+CLASS="LITERAL"
+>CVSROOT</TT
+> adaptela a su servidor 
+      más cercano, escogiendo entre los disponibles en:
+      <A
+HREF="http://www.openbsd.org/anoncvs.html"
+TARGET="_top"
+>	http://www.openbsd.org/anoncvs.html</A
+>.
+    </P
+><P
+> Para compilar e instalar un porte (tras la compilación
+      normalmente se crea un paquete), basta pasar al directorio del porte
+      y como usuario root ejecutar:
+      <PRE
+CLASS="SCREEN"
+>make install </PRE
+>
+
+      El respectivo <TT
+CLASS="FILENAME"
+>Makefile</TT
+> obtendrá las fuentes
+      originales de la red, aplicará los cambios necesarios, compilará, 
+      creará un paquete y lo instalará (posteriormente podrá eliminar el 
+      paquete con
+      <B
+CLASS="COMMAND"
+>pkg_delete</B
+> ver <A
+HREF="x306.htm#PAQUETES"
+>Paquetes</A
+>).  </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="EMULACION"
+>Emulación</A
+></H2
+><P
+>Algunas aplicaciones cuyas fuentes no han sido portadas a OpenBSD
+      pueden ejecutarse con las capas de emulación de OpenBSD. En particular
+      para i386 hay capas de emulación para binarios de Linux, FreeBSD,
+      BSDI y SCO Unix (binarios iBCS2). Aquí se describe brevemente la
+      emulación de binarios para Linux (ver <TT
+CLASS="LITERAL"
+>man
+	compat_linux</TT
+>).</P
+><P
+> Para comenzar rapidamente puede utilizar el paquete
+      <TT
+CLASS="LITERAL"
+>redhat_base-6.2p5</TT
+> que instalará librerías compartidas 
+      y archivos básicos de una distribución Redhat con 
+      <TT
+CLASS="LITERAL"
+>libc 2.1.3</TT
+>
+      (que resulta ser la misma empleada por Debian 2.2).  Después de
+      hacer esto o de copiar nuevas librerías que algún programa requiera,
+      debe ejecutar <TT
+CLASS="FILENAME"
+>/emul/linux/sbin/ldconfig</TT
+>.  Para 
+      automatizar esto durante cada arranque puede agregar a su archivo
+      <TT
+CLASS="FILENAME"
+>/etc/rc.local</TT
+>: 
+      <PRE
+CLASS="SCREEN"
+>if (test -x /emul/linux/sbin/ldconfig) then {
+      /emul/linux/sbin/ldconfig
+} </PRE
+>
+    </P
+><P
+>Al instalar <TT
+CLASS="LITERAL"
+>redhat_base</TT
+> se creará 
+      <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+> y en ese
+      directorio quedará una jerarquía de directorios como la raíz de un
+      sistema Linux (excepto por que no tiene kernel).</P
+><P
+>Al ejecutar un binario para Linux, OpenBSD transformará los
+      nombres que el programa requiera suponiendo que 
+      <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+> es la 
+      raíz.  Si un archivo que se debe leer no es encontrado allí, OpenBSD
+      intenta como segunda opción en la raíz real del sistema.  Por ejemplo
+      si después de instalar <TT
+CLASS="LITERAL"
+>redhat_base</TT
+> intenta:
+      <PRE
+CLASS="SCREEN"
+>/emul/linux/bin/cp /bin/bash / </PRE
+>
+
+      es decir ejecuta <B
+CLASS="COMMAND"
+>cp</B
+> de Linux, el archivo 
+      <TT
+CLASS="FILENAME"
+>/emul/linux/bin/bash</TT
+> (que es
+      dejado allí por <TT
+CLASS="LITERAL"
+>redhat_base</TT
+>) será copiado a 
+      <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+>. Pero si ejecuta
+
+      <PRE
+CLASS="SCREEN"
+>/emul/linux/bin/cp /bin/ksh / </PRE
+>
+
+      como el archivo <TT
+CLASS="FILENAME"
+>/emul/linux/bin/ksh</TT
+> no existe 
+      (<TT
+CLASS="LITERAL"
+>redhat_base</TT
+> no lo incluye),
+      se copiará el archivo <TT
+CLASS="FILENAME"
+>/bin/ksh</TT
+>
+      (<B
+CLASS="COMMAND"
+>ksh</B
+> de OpenBSD) en la raíz de Linux
+      (i.e <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+>).  </P
+><P
+> Si desea ver su sistema como si la raíz fuera
+      <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+>
+      (digamos para ejecutar varios programas Linux) puede emplear:
+
+      <PRE
+CLASS="SCREEN"
+>/emul/linux/bin/bash </PRE
+>
+
+      que iniciará un interprete de comandos compilado para Linux (así 
+      que las vías de ese interprete de comandos son las que ven todos 
+      los binarios de Linux).
+    </P
+><P
+>Aunque la emulación no es perfecta funcionan varios programas
+      (como el compilador gcc), de hecho algunos paquetes oficiales de 
+      OpenBSD emplean esta capa (e.g acroread), mientras que otros emplean
+      la capa para emular BSDi (e.g netscape) y FreeBSD (e.g jdk-1.1.8).</P
+><P
+>Para emplear una distribución de Linux diferente 
+      basta asegur que pueda accederse desde 
+      <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+>.  Por ejemplo si en la partición 
+      <TT
+CLASS="FILENAME"
+>/dev/wd0i</TT
+> tiene un sistema Debian, puede 
+      agregar la siguiente línea a <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+> para 
+      montarla automáticamente durante el arranque:
+      <PRE
+CLASS="SCREEN"
+>/dev/wd0i /mnt/debian ext2fs rw 1 1 </PRE
+>
+      y un enlace de <TT
+CLASS="FILENAME"
+>/emul/linux</TT
+> a
+      <TT
+CLASS="FILENAME"
+>/mnt/debian</TT
+> (creando antes el directorio
+      <TT
+CLASS="FILENAME"
+>/mnt/debian</TT
+>).  
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x51.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x487.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Sobre la instalación</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuración de algunos programas</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,40 @@
+8
+
+dir
+32
+https://svn.slec.net/web/trunk/src/static
+https://svn.slec.net
+
+
+
+2008-09-11T23:34:03.374087Z
+32
+ikks
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+35724245-e78e-4986-ac87-a4b6bcf6cf12
+
+openlayers
+dir
+
+images
+dir
+
+css
+dir
+
+js
+dir
+

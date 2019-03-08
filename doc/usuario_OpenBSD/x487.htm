@@ -1,0 +1,990 @@
+<HTML
+><HEAD
+><TITLE
+>Configuración de algunos programas</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="Notas sobre OpenBSD 3.2 como sistema de escritorio"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Paquetes y portes"
+HREF="x306.htm"><LINK
+REL="NEXT"
+TITLE="Configuración de algunos dispositivos"
+HREF="x675.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Notas sobre OpenBSD 3.2 como sistema de escritorio</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x306.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x675.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURACION-DE-ALGUNOS-PROGRAMAS"
+>Configuración de algunos programas</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="KERNEL"
+>Kernel</A
+></H2
+><P
+>Algunas configuraciones pueden hacerse con sysctl, otras
+	requieren recompilación del kernel</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="COMPILACION-DEL-KERNEL"
+>Compilación del kernel</A
+></H3
+><P
+>Puede sacar las fuentes del CD de instalación (src.tgz)
+	  descomprimiendolas en <TT
+CLASS="FILENAME"
+>/usr/src</TT
+>, después
+	  puede actualizaralas con el CVS de OpenBSD con:
+	  <PRE
+CLASS="SCREEN"
+>cd /usr
+export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+cvs -z3 co -rOPENBSD_3_2 -P src </PRE
+>
+	empleando un espejo más cercano a su computador y cambiado
+	OPENBSD_3_2 por la versión que desea actualizar, o si las fuentes
+	que tiene son la versión que desea puede emplear:
+	<PRE
+CLASS="SCREEN"
+>cd /usr/src
+export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+cvs -z3 update -Pd </PRE
+>
+	</P
+><P
+>Tal como se describe en <B
+CLASS="COMMAND"
+>man afterboot</B
+>,
+	  para compilar basta editar el archivo de configuración del
+	  kernel que se desea editar, después ejecutar 
+	  <B
+CLASS="COMMAND"
+>config</B
+>, cambiar al directorio donde se
+	  compila y compilar.  Por ejemplo:
+	  <PRE
+CLASS="SCREEN"
+>cd /usr/src/sys/arch/i386/conf
+vi GENERIC
+config GENERIC
+cd ../compile/GENERIC
+make clean
+make depend
+make
+	  </PRE
+>
+	  con esto se generará el ejecutable <TT
+CLASS="FILENAME"
+>bsd</TT
+> en
+	  el directorio de compilación, que puede usarse para reemplazar
+	  <TT
+CLASS="FILENAME"
+>/bsd</TT
+>, eventualmente dejando el kernel
+	  anterior listo para un arranque de emergencia:
+	  <PRE
+CLASS="SCREEN"
+>mv /bsd /bsd.old
+mv bsd /bsd
+	  </PRE
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="LD"
+>ld</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>ld</B
+> es el programa que carga otros programas
+	junto con las librerías compartidas que requieran y resuelve los
+	símbolos.  Para buscar librerías compartidas emplea la información
+	de <TT
+CLASS="FILENAME"
+>/var/run/ld.so.hints</TT
+> (que puede examinarse
+	con <B
+CLASS="COMMAND"
+>ldconfig -r</B
+>).</P
+><P
+>Con <TT
+CLASS="LITERAL"
+>ldd</TT
+> pueden examinarse las librerías
+	compartidas que un programa requiere, por ejemplo:
+	<PRE
+CLASS="SCREEN"
+>ldd /usr/bin/less
+	</PRE
+>
+      </P
+><P
+>Cuando se agregan librerías
+	compartidas o se requiere que las librerias de nuevos directorios 
+	sean referenciados en <TT
+CLASS="FILENAME"
+>/var/run/ld.so.hints</TT
+> puede 
+	ejecutarse <B
+CLASS="COMMAND"
+>ldconfig</B
+> (que busca siempre en
+	<TT
+CLASS="FILENAME"
+>/usr/lib</TT
+>).  Por ejemplo durante el arranque
+	en un sistema con X-Window y algunos paquetes normalmente se ejecuta:
+	<PRE
+CLASS="SCREEN"
+>ldconfig /usr/local/lib /usr/X11R6/lib
+	</PRE
+>
+	También pueden especificarse otros directorios por usar durante el
+	arranque definiendo la variable <TT
+CLASS="VARNAME"
+>shlib_dirs</TT
+> en
+	<TT
+CLASS="FILENAME"
+>/etc/rc.conf.local</TT
+> (ver <A
+HREF="x51.htm#INICIO-DEL-SISTEMA"
+>la sección de nombre <I
+>Inicio del sistema</I
+></A
+>)
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PDKSH"
+>pdksh (ksh)</A
+></H2
+><P
+> Es un interprete de comandos similar a
+	<B
+CLASS="COMMAND"
+>bash</B
+>. Este interprete de comandos al iniciarse 
+	como interprete de login lee los archivos 
+	<TT
+CLASS="FILENAME"
+>/etc/profile</TT
+> y 
+	<TT
+CLASS="FILENAME"
+>$HOME/.profile</TT
+>, pero no lo hace si es
+	iniciado como interprete interactivo.  Puede iniciarse
+	explicitamente de esta forma con <B
+CLASS="COMMAND"
+>ksh -l</B
+>.
+	Esto puede resultar útil para iniciarlo por ejemplo dentro de
+	<B
+CLASS="COMMAND"
+>xterm</B
+> y ejecutar la configuración:
+	  <PRE
+CLASS="SCREEN"
+>xterm -e /bin/ksh -l </PRE
+>
+     </P
+><P
+>	El método de edición (<TT
+CLASS="LITERAL"
+>vi</TT
+>,<TT
+CLASS="LITERAL"
+>emacs</TT
+> o 
+	<TT
+CLASS="LITERAL"
+>gmacs</TT
+>) se configura en la variable 
+	<TT
+CLASS="LITERAL"
+>VISUAL</TT
+>.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="BLACKBOX"
+>BlackBox</A
+></H2
+><P
+>Este es un liviano y estético administrador de ventanas
+	cuyo caracterísitca principal es ser veloz.
+	Administra decoración de ventanas, espacios de trabajo, tiene 
+	un menú general (botón derecho sobre el fondo), una barra de 
+	herramientas y un lanzador de aplicaciones.
+	Para verlo en funcionamiento basta instalar el paquete y en
+	<TT
+CLASS="FILENAME"
+>~/.xsession</TT
+> agregar como última instrucción: 
+	<PRE
+CLASS="SCREEN"
+>blackbox  </PRE
+>
+	o si se desea que toda la sesión autentique automáticamente
+	conexiones ssh:
+	<PRE
+CLASS="SCREEN"
+>ssh-agent blackbox  </PRE
+>
+      <DIV
+CLASS="INFORMALFIGURE"
+><A
+NAME="AEN542"
+></A
+><P
+></P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="blackbox-browsex.png"
+ALT="Blackbox ejecutando BrowserX
+	      "
+></IMG
+></P
+></DIV
+><P
+></P
+></DIV
+>
+  </P
+><P
+>Entre sus características:
+	<P
+></P
+><UL
+><LI
+><P
+>Es altamente configurable (recursos, menús, decoración
+	      de ventanas y estilos).
+	    </P
+></LI
+><LI
+><P
+>Es muy liviano, la versión 6.0 requiere 524K en RAM.</P
+></LI
+><LI
+><P
+>Con <B
+CLASS="KEYCAP"
+>Alt</B
+>+[Boton izquierdo] permite
+	      cambiar ubicación de la ventana sobre la que está el curso,
+	      y con <B
+CLASS="KEYCAP"
+>Alt</B
+>+[Botono derecho] el tamaño.</P
+></LI
+></UL
+>
+      </P
+><P
+>El menú que presenta se configura en un archivo texto con
+	una sintaxis sencilla, puede cambiarse editando en
+	<TT
+CLASS="FILENAME"
+>~/.blackboxrc</TT
+>:
+	<PRE
+CLASS="SCREEN"
+>session.menuFile: /usr/local/share/blackbox/menu
+	</PRE
+>
+	Podría copiarse 
+	<TT
+CLASS="FILENAME"
+>/usr/local/share/blackbox/menu</TT
+> en
+	<TT
+CLASS="FILENAME"
+>~/.blackbox/menu</TT
+> y editarlo de acuerdo
+	a las preferencias del usuario.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="X-WINDOW"
+>X-Window</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="X-WINDOW-FUENTES"
+>Fuentes</A
+></H3
+><P
+>Las fuentes de X-Window se mantienen en
+	  <TT
+CLASS="FILENAME"
+>/usr/X11R6/lib/X11/fonts</TT
+> en formatos
+	  PCF, SNF y BDF (posiblemente comprimidos). Una secuencia
+	  típica para copiar una fuente PCF (tomada de la documentación
+	  de Bochs 2.2) es:
+	  <PRE
+CLASS="SCREEN"
+>	    cp font/vga.pcf /usr/X11R6/lib/X11/fonts/misc
+	    compress /usr/X11R6/lib/X11/fonts/misc/vga.pcf
+	    mkfontdir /usr/X11R6/lib/X11/fonts/misc
+	    xset fp rehash
+	  </PRE
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="TETEX-Y-GHOSTVIEW"
+>teTeX y Ghostview</A
+></H2
+><P
+> La instalación de ambos es directa. De requerirse puede 
+	configurarse teTeX con <B
+CLASS="COMMAND"
+>texconfig</B
+>.  
+	<PRE
+CLASS="SCREEN"
+>pkg_add $PKG_PATH/teTeX_base-1.0.7.tgz 
+pkg_add $PKG_PATH/gv-3.5.8.tgz </PRE
+>
+	Para procesar documentos muy grandes puede cambiar límites
+	de memoria en el archivo 
+	<TT
+CLASS="FILENAME"
+>/usr/local/share/texmf/web2c/texmf.cnf</TT
+>.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="OCAML"
+>Ocaml</A
+></H2
+><P
+>Aunque OpenBSD 3.2 incluye la versión 3.06 de Ocaml, puede 
+	requerir compilar de fuentes. Para compilarlo con
+	<SPAN
+CLASS="APPLICATION"
+>labltk</SPAN
+> se require Tcl/Tk instalado, 
+	las fuentes se configuran con:
+	<PRE
+CLASS="SCREEN"
+>./configure -tkdefs "-I/usr/local/include/tk8.3 -I/usr/local/include/tcl8.3" -tklibs "-L/usr/local/lib/ -ltk83 -ltcl83" </PRE
+>
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="FTP"
+>ftp</A
+></H2
+><P
+>Además de las características usuales de un cliente ftp
+    (RFC 959, extendido en RFC 1123), el cliente de OpenBSD:
+      <P
+></P
+><UL
+><LI
+><P
+>Realiza conexiones pasivas por defecto. Sin embargo algunos 
+	    servidores de ftp requiere conexiones activas, si ese es el caso 
+	    (por ejemplo cuando el servidor responde a <TT
+CLASS="LITERAL"
+>ls</TT
+>
+	    con <TT
+CLASS="LITERAL"
+>425 Can't open data connection</TT
+>) emplee 
+	    la opción <TT
+CLASS="OPTION"
+>-A</TT
+>.
+	    
+	  </P
+></LI
+><LI
+><P
+>Emplea el archivo de configuración
+	    <TT
+CLASS="FILENAME"
+>~/.netrc</TT
+>, para realizar conexiones
+	    automáticamente.  En ese archivo usted puede especificar 
+	    servidores a los que suele conectarse (y por ejemplo emplear
+	    redireccionamiento para automatizar operaciones .  Este archivo puede tener comentarios
+	    (líneas iniciadas con el caracter '#') o líneas como:
+	    <PRE
+CLASS="SCREEN"
+>machine servidor.micolegio.edu.co login pablo 
+machine rtfm.mit.edu login anonymous passwd pablo@micolegio.edu.co
+	    </PRE
+>
+	    que indican emplear el usuario pablo al conectarse a servidor.micolegio.edu.co
+	    (pedirá la clave al hacer la conexión) y emplear el usuario
+	    <TT
+CLASS="LITERAL"
+>anonymous</TT
+>, con clave 
+	    <TT
+CLASS="LITERAL"
+>pablo@micolegio.edu.co</TT
+> al hacer conexiones con
+	    <TT
+CLASS="LITERAL"
+>rtfm.mit.edu</TT
+>.
+	    <DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Las claves que se almacenan en este archivo son
+	      textos planos que el superusuario del sistema podría ver.
+	      Para que otros usuarios no puedan verlas quite el permiso
+	      de lectura para otros usuarios y el grupo.</P
+></TD
+></TR
+></TABLE
+></DIV
+></P
+></LI
+><LI
+><P
+>Permite especificar el URL (iniciado con 
+	      <TT
+CLASS="LITERAL"
+>http://</TT
+> o <TT
+CLASS="LITERAL"
+>ftp://</TT
+>) de
+	      un archivo por descargar en la línea de comandos (y 
+	      realiza autenticación automática si es ftp:// y se ha 
+	      configurado <TT
+CLASS="FILENAME"
+>~/.netrc</TT
+>, o si el URL
+	      es análogo a
+	      <TT
+CLASS="LITERAL"
+>ftp://pablo:miclave@servidor.micolegio.edu.co/pub/doc.txt</TT
+>).  
+	      En este caso si se requiere puede emplearse la opción 
+	      <TT
+CLASS="OPTION"
+>-o</TT
+> seguida del nombre del archivo con el 
+	      que se desea salvar el archivo transmitido.  También puede
+	      emplearse * para indicar transmisión de varios archivos.
+	    </P
+></LI
+></UL
+>
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="SUDO"
+>sudo</A
+></H2
+><P
+> Este programa permite ejecutar comandos privilegiados a
+	algunos usuarios.  Se configura en
+	<TT
+CLASS="FILENAME"
+>/etc/sudoers</TT
+> que debe editarse con
+	<B
+CLASS="COMMAND"
+>visudo</B
+>.</P
+><P
+>Una vez configurado, para ejecutar un comando privilegiado
+	desde una cuenta configurada se usa
+	<B
+CLASS="COMMAND"
+>sudo <TT
+CLASS="REPLACEABLE"
+><I
+>comando</I
+></TT
+></B
+>.
+	Por ejemplo:
+	<PRE
+CLASS="SCREEN"
+>sudo vi /etc/rc.conf.local </PRE
+>
+      </P
+><P
+>	Puede verse en <A
+HREF="http://rr.sans.org/authentic/sudo.php"
+TARGET="_top"
+>	  http://rr.sans.org/authentic/sudo.php</A
+> interacción 
+	entre <B
+CLASS="COMMAND"
+>sudo</B
+> y <B
+CLASS="COMMAND"
+>ssh</B
+> para 
+	administrar una red.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="SSH"
+>ssh</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="USO-DE-SSH"
+>Uso de ssh</A
+></H3
+><P
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="CONFIGURACION-SERVIDOR-SSH"
+>Configuración del servidor ssh</A
+></H3
+><P
+>El servidor OpenSSH soporta bien un modo especial
+	  llamado "de separación de privilegios" sólo en OpenBSD y 
+	  NetBSD. Este modo ha mostrado ser más seguro que el modo 
+	  normal<A
+NAME="AEN630"
+HREF="#FTN.AEN630"
+>[1]</A
+>.
+	  Para activarlo en OpenBSD 3.2 basta crear un directorio vacio
+	  <TT
+CLASS="FILENAME"
+>/var/empty</TT
+> y crear el usuario sshd. 
+	  El directorio  puede crearse así:
+	  <PRE
+CLASS="SCREEN"
+>	    mkdir /var/empty
+	    chown root:wheel /var/empty
+	    chmod u=rwx,go=rx /var/empty
+	  </PRE
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="APACHE"
+>Apache</A
+></H2
+><P
+>OpenBSD incluye una versión auditada de Apache como parte de
+	los componentes básicos.  Para activarla sin soporte para SSL
+	agregue la siguiente línea en
+	<TT
+CLASS="FILENAME"
+>/etc/rc.conf.local</TT
+>:
+	<PRE
+CLASS="SCREEN"
+>httpd_flags="" </PRE
+>
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="DOCBOOK"
+>DocBook</A
+></H2
+><P
+>Puede configurarse tanto DocBook SGML 4.1 y procesarse con 
+	las hojas de éstilo DSSSL, o bien DocBook XML 4.1 y procesarse
+	con <B
+CLASS="COMMAND"
+>xsltproc</B
+>.</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="SGML-4-1-CON-DSSSL"
+>SGML 4.1 con DSSSL</A
+></H3
+><P
+>Instale los paquetes openjade, docbook y docbook-dsssl:
+	  <PRE
+CLASS="SCREEN"
+>pkg_add $PKG_PATH/docbook-4.1.2.tgz
+pkg_add $PKG_PATH/docbook-dsssl-1.72.tgz
+pkg_add $PKG_PATH/openjade-1.3.tgz </PRE
+>
+	  Esto bastará para hacer conversiones de DocBook SGML a 
+	  HTML por ejemplo si su hoja de estílo DSSL es "marcos.dsl" y 
+	  va a convertir el documento DocBook marcos.xml:
+	  <PRE
+CLASS="SCREEN"
+>openjade  -t sgml -ihtml -d marcos.dsl#html marcos.db </PRE
+>
+	</P
+><P
+>Para convertir a PostScript además de los paquetes anteriores
+	  requiere el paquete <SPAN
+CLASS="APPLICATION"
+>teTeX</SPAN
+> (ver
+	  <A
+HREF="x487.htm#TETEX-Y-GHOSTVIEW"
+>teTeX y Ghostview</A
+>),
+	  jadetex y aumentar algunos límites de memoria de teTeX.
+	  <PRE
+CLASS="SCREEN"
+>pkg_add $PKG_PATH/jadetex-3.11.tgz </PRE
+>	    
+	  Después de instalar teTeX modifique el archivo 
+	  <TT
+CLASS="FILENAME"
+>/usr/local/share/texmf/web2c/texmf.cnf</TT
+>, 
+	  busque las siguientes variables y ponga el valor sugerido (o pruebe
+	  otros, examinando en la salida de jadetex o de pdfjadetex errores
+	  que indiquen falta de memoria):
+	  <PRE
+CLASS="SCREEN"
+>hash_extra = 60000
+
+max_strings.context = 140000
+
+save_size = 10000     </PRE
+>
+	</P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="XML-4-1-2-CON-XSL"
+>XML 4.1.2 con XSL</A
+></H3
+><P
+>Cómo parte del paquete <TT
+CLASS="LITERAL"
+>docbook-4.1.2</TT
+> se
+	  instalará el DTD de DocBook XML 4.1.2 en el directorio
+	  <TT
+CLASS="FILENAME"
+>/usr/loca/share/xml/docbook</TT
+>.  Es
+	  recomendable que cree el archivo 
+	  <TT
+CLASS="FILENAME"
+>/usr/local/share/xml/catalog</TT
+> inicialmente
+	  con:
+	  <PRE
+CLASS="SCREEN"
+>CATALOG "docbook/catalog" </PRE
+>
+	  y que agreuge en este archivo la ruta de otros catálogos XML o
+	  de DTDs.
+	</P
+><P
+>Para transformar documentos XML con hojas de éstilo XSL
+	  puede emplear un procesador  como <TT
+CLASS="LITERAL"
+>xsltproc</TT
+>,
+	  que está incluido en el paquete <TT
+CLASS="LITERAL"
+>libxslt-1.0.20</TT
+>.
+	  Esta herramienta recibe el nombre del archivo XSL y el nombre
+	  del archivo XML por transformar.  También puede recibir la opción
+	  <PRE
+CLASS="SCREEN"
+>--catalogs</PRE
+> que indica usar los catalogos 
+	  de la variable <TT
+CLASS="LITERAL"
+>SGML_CATALOG_FILES</TT
+> (se separan
+	  unos catálgos de otors con el caracter ':'), o la opción
+	  <PRE
+CLASS="SCREEN"
+>--nonet</PRE
+> que indica no descargar DTDs de Internet
+	  (los catálogos deben resolver todos los identificadores
+	  públicos).
+	</P
+><P
+>Las hojas de éstilo XSL para transformar DocBook XML en
+	  HTML y en XML-FO (Formatting objects, apropiado para imprimir con un 
+	  procesador FO) las puede descargar de
+	  <A
+HREF="http://docbook.sourceforge.net/release/xsl/"
+TARGET="_top"
+>	    http://docbook.sourceforge.net/release/xsl/</A
+>
+	  e instalarlas por ejemplo en el directorio
+	  <TT
+CLASS="FILENAME"
+>/usr/local/share/xml/</TT
+>
+	</P
+><P
+>Una vez instalados todas las partes puede procesar el archivo
+	  <TT
+CLASS="FILENAME"
+>marcos.xml</TT
+> con la hoja XSLT 
+	  <TT
+CLASS="FILENAME"
+>marcos.xsl</TT
+> usando:
+	  <PRE
+CLASS="SCREEN"
+>export SGML_CATALOG_FILES="/usr/local/share/xml/catalog"
+xsltproc --catalogs --nonet marcos.xsl marcos.xml</PRE
+>
+        </P
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN630"
+HREF="x487.htm#AEN630"
+>[1]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Este modo 
+	    ha tenido menos vulnerabilidades que el modo normal. Ver 
+	    <A
+HREF="http://www.counterpane.com/alert-openssh.html"
+TARGET="_top"
+>	      http://www.counterpane.com/alert-openssh.html</A
+>
+    	    </P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x306.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x675.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Paquetes y portes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuración de algunos dispositivos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,653 @@
+<HTML
+><HEAD
+><TITLE
+>Configuración de algunos dispositivos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="HOME"
+TITLE="Notas sobre OpenBSD 3.2 como sistema de escritorio"
+HREF="t1.htm"><LINK
+REL="PREVIOUS"
+TITLE="Configuración de algunos programas"
+HREF="x487.htm"><LINK
+REL="NEXT"
+TITLE="Interacción entre OpenBSD y Linux"
+HREF="x800.htm"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Notas sobre OpenBSD 3.2 como sistema de escritorio</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x487.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x800.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="CONFIGURACION-DE-ALGUNOS-DISPOSITIVOS"
+>Configuración de algunos dispositivos</A
+></H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="IMPRESORA"
+>Impresora</A
+></H2
+><P
+>OpenBSD incluye el servidor <SPAN
+CLASS="APPLICATION"
+>lpr</SPAN
+>, que
+	se activa agregando en <TT
+CLASS="FILENAME"
+>/etc/rc.conf.local</TT
+> la línea:
+	<PRE
+CLASS="SCREEN"
+>lpd_flags="" </PRE
+>
+	Cada impresora se configura en <TT
+CLASS="FILENAME"
+>/etc/printcap</TT
+>. 
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="DISCOS-DUROS"
+>Discos duros</A
+></H2
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="ZONAS-DE-INTERCAMBIO"
+>Zonas de intercambio (swap)</A
+></H3
+><P
+>Son porciones de un disco duro que pueden emplearse como 
+	  si fuera memoria RAM (aunque es mucho más lenta).  Si por ejemplo
+	  desea agregar como dispositivo de intercambio el disco
+	  <TT
+CLASS="LITERAL"
+>/dev/wd1l</TT
+> debe:
+	  <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Asegurarse de poner tipo swap a la partición.    
+		Puede emplear <B
+CLASS="COMMAND"
+>disklabel</B
+>. Por 
+		ejemplo puede emplear el modo interactivo de este
+		programa:
+		<PRE
+CLASS="SCREEN"
+>disklabel -E /dev/wd1c </PRE
+>
+		en este modo puede examinar las particiones y divisiones
+		del disco con <B
+CLASS="KEYCAP"
+>p</B
+>, puede ver una ayuda
+		abreviada con <B
+CLASS="KEYCAP"
+>h</B
+>. Con <B
+CLASS="KEYCAP"
+>m</B
+> 
+		le será posible cambiar el tipo de una partición
+		(por ejemplo puede ser <TT
+CLASS="LITERAL"
+>4.2BSD</TT
+> si se
+		trata de un sistema ffs o <TT
+CLASS="LITERAL"
+>swap</TT
+> si
+		se trata de un dispositivo para intercambio), y la
+		ubicación.
+		<DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+BORDER="1"
+WIDTH="90%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Antes de cambiar la ubicación de una partición</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>El sitio donde reubique una partición NO debe 
+		    estar traslapado sobre una partición ya existente.
+		    Si traslapa una partición sobre otra, la información que 
+		    hubiera en la partición sobre la que traslapa puede 
+		    perderse de manera irreversible.</P
+></TD
+></TR
+></TABLE
+></DIV
+>	  
+	      </P
+></LI
+><LI
+><P
+>Agregue una línea a su archivo 
+		<TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+> con el dispositivo de
+		intercambio, punto de montaje <TT
+CLASS="LITERAL"
+>none</TT
+>, tipo 
+		<TT
+CLASS="LITERAL"
+>swap</TT
+> y opción <TT
+CLASS="LITERAL"
+>sw</TT
+>:
+		<PRE
+CLASS="SCREEN"
+>/dev/wd1l none  swap sw 0 0 </PRE
+>
+		Con este cambio, el dispositivo será montado como zona
+		de intercambio cada vez que el sistema inicie (está
+		en <TT
+CLASS="FILENAME"
+>/etc/rc</TT
+>).
+	      </P
+></LI
+><LI
+><P
+>Intente agregar el dispositivo como zona de 
+		intercambio sin reiniciar con:
+		<PRE
+CLASS="SCREEN"
+>swapon -a </PRE
+>
+		o con:
+		<PRE
+CLASS="SCREEN"
+>swapctl -A -t blk </PRE
+>
+		Ambos comandos intentarán montar como
+		zonas de intercambio todos dispositivos por bloques de
+		<TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+> que tengan la opción
+		<TT
+CLASS="LITERAL"
+>sw</TT
+>.   Puede verificar la adición 
+		listando todas las zonas de intercambio con:
+		<PRE
+CLASS="SCREEN"
+>swapctl -l </PRE
+>
+	      </P
+></LI
+></OL
+>
+	  </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="DISQUETES-E-IMAGENES-DE-DISQUETES"
+>Disquetes e imagenes de disquetes</A
+></H2
+><P
+>Un usuario podrá leer disquetes con las herramientas de 
+	<SPAN
+CLASS="APPLICATION"
+>mtools</SPAN
+>
+	mientras esté en el grupo <TT
+CLASS="LITERAL"
+>operator</TT
+>:
+      <PRE
+CLASS="SCREEN"
+>mdir
+mcopy a:cart.txt .  </PRE
+>
+    </P
+><P
+>Al parecer por el nivel de seguridad por defecto de 
+	OpenBSD (ver <B
+CLASS="COMMAND"
+>man securelevel</B
+>), sólo root puede 
+	montar y escribir disquetes aún
+	cuando el grupo operator aparezca con permiso de escritura en
+	el dispositivo. Por ejemplo para montar el disquete de la 
+	primera unidad en el directorio <TT
+CLASS="FILENAME"
+>/floppy</TT
+>:
+
+	<PRE
+CLASS="SCREEN"
+>mount -t msdos /dev/fd0a /floppy </PRE
+>
+	o cree una entrada apropiada en <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>
+	<PRE
+CLASS="SCREEN"
+>/dev/fd0a /floppy msdos rw,noauto 0 0 </PRE
+>
+	Para escribir todos los archivos con extensión
+	<TT
+CLASS="LITERAL"
+>tgz</TT
+> en el disquete de la primera unidad:
+	<PRE
+CLASS="SCREEN"
+>mcopy *tgz a: </PRE
+>
+	Para facilitar estas operaciones a algunos usuarios normales puede
+	configurarse y emplearse <B
+CLASS="COMMAND"
+>sudo</B
+> (ver <A
+HREF="x487.htm#SUDO"
+>sudo</A
+>):
+	<PRE
+CLASS="SCREEN"
+>sudo mcopy *tgz a: </PRE
+>
+	o incluso con <B
+CLASS="COMMAND"
+>sudo</B
+> y un alias hacer 
+	transparente la restricción para los usuarios que puedan
+	empler <B
+CLASS="COMMAND"
+>sudo</B
+>:
+	<PRE
+CLASS="SCREEN"
+>alias mcopy='sudo mcopy' </PRE
+>
+      </P
+><P
+>Pueden montarse imagenes de disquetes creando primero un 
+	dispositivo con <B
+CLASS="COMMAND"
+>vnconfing</B
+> asociado 
+	con la imagen y después montar tal dispositivo en el directorio
+	deseado.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="CD-ROM"
+>CD-ROM</A
+></H2
+><P
+>Cómo en el caso de disquetes sólo root puede montar CDs (otros
+	usuarios pueden emplear <SPAN
+CLASS="APPLICATION"
+>sudo</SPAN
+>).  Por
+	ejemplo para montar el CD que está en la primera unidad:
+	<PRE
+CLASS="SCREEN"
+>mount -t cd9660 /dev/cd0a /cdrom </PRE
+>
+	o para lograrlo con sólo <TT
+CLASS="LITERAL"
+>mount /cdrom</TT
+> se
+	agregaría en <TT
+CLASS="FILENAME"
+>/etc/fstab</TT
+>:
+	<PRE
+CLASS="SCREEN"
+>/dev/cd0a /cdrom cd9660 ro,noauto 0 0 </PRE
+>
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="TECLADO-EN-ESPANOL"
+>Teclado en español</A
+></H2
+><P
+> Si su teclado es español o latinoaméricano puede configurarlo
+	durante la instalación.  Después de instalado puede elegir otra
+	configuración con <B
+CLASS="COMMAND"
+>keyb la</B
+> o 
+	<B
+CLASS="COMMAND"
+>keyb es</B
+>
+      </P
+><P
+>Si tiene un teclado US y desea emplear teclas muertas en la
+	consola puede usar desde la línea de comandos:
+	<PRE
+CLASS="SCREEN"
+>wsconsctl -w keyboard.map+="keycode 40=dead_acute dead_diaeresis"
+wsconsctl -w keyboard.map+="keycode 41=dead_grave dead_tilde"
+wsconsctl -w keyboard.map+="keycode 56=Cmd2 Multi_key" </PRE
+>
+
+	o para que esta configuración siempre sea realizada durante el 
+	arranque agregue estas líneas al final de 
+	<TT
+CLASS="FILENAME"
+>/etc/rc.local</TT
+> (puede agregar al final de
+	cada línea <TT
+CLASS="LITERAL"
+>&#62; /dev/null</TT
+>).
+      </P
+><P
+> Estas líneas configuran entre otros:
+	<P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="KEYCAP"
+>'</B
+></DT
+><DD
+><P
+>como tecla muerta para la tilde (seguido de un espacio 
+		producirá el apostrofe)</P
+></DD
+><DT
+><B
+CLASS="KEYCAP"
+>`</B
+></DT
+><DD
+><P
+>como tecla muerta para el acento grave (seguido 
+		de un espacio produce el apostrofe izquierdo)
+	    </P
+></DD
+><DT
+><B
+CLASS="KEYCAP"
+>~</B
+></DT
+><DD
+><P
+>como tecla muerta para la virgulilla (seguido 
+		de un espacio produce ~)
+	    </P
+></DD
+><DT
+><B
+CLASS="KEYCAP"
+>^</B
+></DT
+><DD
+><P
+>como tecla muerta para el acento circunflejo
+	    </P
+></DD
+><DT
+><B
+CLASS="KEYCAP"
+>Shift+Alt izquierdo</B
+></DT
+><DD
+><P
+>Como tecla de composición</P
+></DD
+></DL
+></DIV
+>	  
+      </P
+><P
+>La tecla de combinación<A
+NAME="AEN785"
+HREF="#FTN.AEN785"
+>[1]</A
+>
+	le permitirá generar un caracter empleando una secuencia de dos
+	teclas.  
+	Por ejemplo si presiona la tecla de combinación
+	(i.e <B
+CLASS="KEYCAP"
+>Shift+Alt izquierdo</B
+> con la configuración
+	presentada), y después presiona <B
+CLASS="KEYCAP"
+>?</B
+> seguido de
+	<B
+CLASS="KEYCAP"
+>?</B
+> obtendrá el caracter ¿.  En el ápendice <A
+HREF="a816.htm"
+>Caracteres que pueden
+	  componerse</A
+>
+	encontrará una tabla con todas las combinaciones de teclas que 
+	pueden usarse con la tecla compose.
+
+	Una secuencia que podría agregarse es <B
+CLASS="KEYCAP"
+>"</B
+> seguido de 
+	espacio para producir ".  Puede hacerse editando el archivo 
+	<TT
+CLASS="FILENAME"
+>/usr/src/sys/dev/wscons/wskbdutil.c</TT
+>, 
+	agregando al vector <TT
+CLASS="LITERAL"
+>compose_tab</TT
+> la línea:
+	<PRE
+CLASS="SCREEN"
+>{ { KS_dead_diaeresis,KS_space }, KS_quotedbl }, </PRE
+>
+	y después compilando e instalando el kernel modificado.
+      </P
+><P
+> Dado que X-Window emplea el teclado en modo puro la
+	configuración que haga para las consolas virtuales no quedará
+	disponible.  Puede en cambio agregar las siguientes líneas a su
+	archivo <TT
+CLASS="FILENAME"
+>~/.Xmodmap</TT
+> y asegurarse de ejecutar 
+	<B
+CLASS="COMMAND"
+>xmodmap ~/.Xmodmap</B
+>
+	durante el arranque de su sesión X.
+	<PRE
+CLASS="SCREEN"
+>keycode 64=Alt_L Multi_key
+keycode 48=dead_acute dead_diaeresis
+keycode 49=dead_grave dead_tilde </PRE
+>
+      </P
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN785"
+HREF="x675.htm#AEN785"
+>[1]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Tecla de combinación: en
+	  inglés <I
+CLASS="FOREIGNPHRASE"
+>compose key</I
+></P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x487.htm"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="t1.htm"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x800.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuración de algunos programas</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Interacción entre OpenBSD y Linux</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

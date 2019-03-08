@@ -1,0 +1,299 @@
+<HTML
+><HEAD
+><TITLE
+>Notas sobre OpenBSD 3.2 como sistema de escritorio</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"><LINK
+REL="NEXT"
+TITLE="Sobre la instalación"
+HREF="x54.htm"></HEAD
+><BODY
+CLASS="article"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+><A
+NAME="AEN1"
+>Notas sobre OpenBSD 3.2 como sistema de escritorio</A
+></H1
+><DIV
+CLASS="authorgroup"
+><A
+NAME="AEN4"
+></A
+><H3
+CLASS="author"
+><A
+NAME="AEN5"
+>Vladimir Támara Patiño</A
+></H3
+></DIV
+><DIV
+><DIV
+CLASS="abstract"
+><A
+NAME="AEN12"
+></A
+><P
+></P
+><P
+>Estas notas presentan algo de la experiencia que el autor ha 
+	ganado como usuario de OpenBSD como sistema de escritorio después 
+	de haber empleado Linux.
+      </P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="introduccion"
+>Introducción</A
+></H1
+><P
+> OpenBSD es un sistema operativo tipo Unix de libre
+      redistribución<A
+NAME="AEN26"
+HREF="#FTN.AEN26"
+>[1]</A
+>.  
+      Es descendiente directo de NetBSD que a su
+      vez desciende de los sistemas Unix desarrollados en la Universidad de
+      Berkeley i.e. BSD<A
+NAME="AEN28"
+HREF="#FTN.AEN28"
+>[2]</A
+>.  Sus puntos más 
+      fuertes son estandarización 
+      (cumplir POSIX), seguridad y criptografía.  Para lograr 
+      seguridad y descubrir fallas sus desarrolladores examinan 
+      detalladamente y mejoran (auditan) las fuentes de los componentes 
+      básicos del sistema operativo<A
+NAME="AEN31"
+HREF="#FTN.AEN31"
+>[3]</A
+>.  
+      Este trabajo  ha permitido
+      liberar varias versiones de OpenBSD desde hace más de 7 años con tan sólo 
+      una falla de seguridad conocida en los componentes básicos,  en la 
+      instalación por defecto (apropiada para un servidor conectado a 
+      Internet con <SPAN
+CLASS="application"
+>OpenSSH</SPAN
+>,
+      <SPAN
+CLASS="application"
+>NTP</SPAN
+> y 
+      <SPAN
+CLASS="application"
+>sendmail</SPAN
+>).
+    </P
+><A
+NAME="AEN37"
+></A
+><P
+>Los 
+	    desarrolladores de OpenBSD ... el código fuente para descubrir 
+	    fallas de seguridad.
+    </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="AEN40"
+>Diferencias entre OpenBSD y Linux</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+> Linux soporta más hardware y cuenta con muchas más
+	  aplicaciones, sin embargo la autodetección de hardware de OpenBSD
+	  es mejor y este sistema cuenta con capas de emulación que
+	  permiten ejecutar algunas aplicaciones para Linux, BSDI y 
+	  FreeBSD (en i386).</P
+></LI
+><LI
+><P
+>Mientras que hay diversas distribuciones de Linux, cada una
+	  con su inicialización, sistema de paquetes y programas
+	  particulares, hay una sola "distribución" OpenBSD mantenida y
+	  auditada por los mismos desarrolladores (i.e mantienen kernel, 
+	  porte del compilador, librería de C, sistema de paquetes,
+	  documentación, etc.)
+	</P
+></LI
+><LI
+><P
+> OpenBSD no ha sido diseñado como sistema operativo de
+	  escritorio, sino para manejar un servidor conectado a Internet de
+	  forma extra-segura ---sin embargo estas notas presentan OpenBSD
+	  como sistema de escritorio.</P
+></LI
+><LI
+><P
+> Las fuentes de OpenBSD son en la humilde opinión del autor
+	  más legibles y mejor documentadas, los mismos desarrolladores
+	  mantienen excelentes páginas man.</P
+></LI
+><LI
+><P
+> La licencia del kernel de OpenBSD y de la mayoría de
+	  componentes del sistema básico es BSD, aunque todo el sistema
+	  depende de una versión auditada de <SPAN
+CLASS="application"
+>gcc</SPAN
+>.
+	</P
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+><H3
+CLASS="FOOTNOTES"
+>Notas</H3
+><TABLE
+BORDER="0"
+CLASS="FOOTNOTES"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN26"
+HREF="t1.htm#AEN26"
+>[1]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>La mayoría de los componentes básicos de
+	OpenBSD están cubiertos por licencias tipo BSD, que permiten 
+	copia, redistribución, modificación, inclusión en programas con
+	licencia diferente y exigen únicamente crédito.</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN28"
+HREF="t1.htm#AEN28"
+>[2]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>BSD es sigla de
+	<I
+CLASS="foreignphrase"
+>Berkeley Software
+	  Distribution</I
+>.</P
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="5%"
+><A
+NAME="FTN.AEN31"
+HREF="t1.htm#AEN31"
+>[3]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+WIDTH="95%"
+><P
+>Algunas técnicas que 
+	emplean para mejorar las fuentes de los portes se describen 
+	en <A
+HREF="http://www.openbsd.org/porting.html"
+TARGET="_top"
+>&#13;	  http://www.openbsd.org/porting.html</A
+></P
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x54.htm"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Sobre la instalación</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

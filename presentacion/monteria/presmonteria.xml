@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!DOCTYPE slides SYSTEM "../slides-full.dtd">
+<?dbhtml graphics-dir="./graphics"?>
+<?dbhtml css-stylesheet="./browser/slides.css"?>
+<?dbhtml script-dir="./browser"?>
+<slides lang="es">
+ <slidesinfo>
+  <title><acronym>SLEC y Tareas</acronym></title>
+  <author>
+      <firstname><ulink url="mailto:igor@tamarapatino.com"><email>Igor</email></ulink></firstname>
+   <surname>Támara Patiño</surname>
+  </author>
+  <date>23 de Mayo de 2002</date>
+  <legalnotice>
+   <para>Este documento se cede al dominio público</para>
+  </legalnotice>
+ </slidesinfo>
+ <section>
+  <title>Preliminares</title>
+    <foil>
+      <title>Temas</title>
+      <itemizedlist>
+	<listitem>
+	  <para>Licencias y programas</para>
+	</listitem>
+	<listitem>
+	  <para>Con respecto a Colombia</para>
+	</listitem>
+	<listitem>
+	  <para>Descripción de <acronym><ulink url="http://ingenieria.sanmartin.edu.co/slec">SLEC</ulink></acronym></para>
+	</listitem>
+	<listitem>
+	  <para>Descripción del <acronym><ulink url="http://tamarapatino.com/gfc">GFC</ulink></acronym></para>
+	</listitem>
+	<listitem>
+	  <para>Qué hacer y cómo conseguir más información</para>
+	</listitem>
+      </itemizedlist>
+    </foil>
+  <foil>
+   <title>Vistazo a licencias de programas y documentación</title>
+   
+   <para>Existen varios tipos de licencias</para>
+   <itemizedlist>
+	<listitem>
+	  <para>Programas</para>
+   <itemizedlist>
+    <listitem>
+    <para>Dominio Público y BSD: Dar a todos sin restricción, desinteresadamente.</para>
+    </listitem>
+    <listitem>
+     <para>GPL : Forzar el copyleft.</para>
+    </listitem>
+	<listitem>
+	  <para>ShareWare y FreeWare : Alguna libertad.</para>
+	</listitem>
+	<listitem>
+	  <para>Copyright : Todo para la empresa.</para>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+	<listitem>
+	  <para>Documentación</para>
+	  <itemizedlist>
+	    <listitem>
+	      <para>Dominio Público</para>
+	    </listitem>
+	    <listitem>
+	      <para>Open Publication License</para>
+	    </listitem>
+	    <listitem>
+	      <para>GFDL</para>
+	    </listitem>
+	    <listitem>
+	      <para>Copyright</para>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+      </itemizedlist>
+      <para><ulink url="http://ingenieria.sanmartin.edu.co/slec">Más información</ulink>.</para>
+      <para>La meta de las licencias: Llegar a un balance entre el estímulo para los autores y el beneficio general. Libertad, colaboración, entrega....</para>
+  </foil>
+    <foil>
+      <title>Muchos Sistemas Operativos</title>
+      <para>Además de Linux hay otros Sistemas Operativos/Núcleos</para>
+      <itemizedlist>
+	<listitem>
+	  <para>OpenBSD : Seguridad.</para>
+	</listitem>
+	<listitem>
+	  <para>Plan 9 : Sistema Distribuido.</para>
+	</listitem>
+	<listitem>
+	  <para>NetBSD : Más de 50 arquitecturas.</para>
+	</listitem>
+	<listitem>
+	  <para>Be/OS : El escritorio.</para>
+	</listitem>
+	<listitem>
+	  <para>OpenMosix : Modificación de Linux para ambiente Distribuido</para>
+	</listitem>
+	<listitem>
+	  <para>FreeBSD : Fiabilidad</para>
+	</listitem>
+	<listitem>
+	  <para>HURD : El del proyecto GNU</para>
+	</listitem>
+      </itemizedlist>
+      <para>El sistema operativo es el conjunto de componentes que hacen del computador algo funcional, el núcleo es el encargado de coordinar procesos básicos, para que haya una infraestructura sobre la cuál construir más.</para>
+    </foil>
+    <foil>
+      <title>Algunos programas para usar en Linux</title>
+      <para>Muchas aplicaciones distintas para usuarios distintos</para>
+      <itemizedlist>
+	<listitem>
+	  <para>Aplicaciones de ofimática : OpenOffice, StarOffice, KOffice, gnome-office</para>
+	</listitem>
+	<listitem>
+	  <para>Clientes(visores) de correo: evolution, balsa, pyne, tkmail, mutt, squirrelmail, imp-horde</para>
+	</listitem>
+	<listitem>
+	  <para>Navegadores : Mozilla, Netscape, Opera, Konqueror, Galeon, dillo, w3m, lynx</para>
+	</listitem>
+	<listitem>
+	  <para>Editores de texto : emacs, vim, ed, gnotepad, gedit, pico, nano, jedit, vi, qe</para>
+	</listitem>
+	<listitem>
+	  <para>Matemáticas : gnuplot, geomview, openuniverse, xmgr, scilab, maxima, octave, TeX.</para>
+	</listitem>
+	<listitem>
+	  <para>Educación : learnloop, manhattan, ggradebook, drgenius, gcompris, logo, tuxtyping, gtypist</para>
+	</listitem>
+	<listitem>
+	  <para>Gráficos : gimp, blender, gpaint, xpaint, dia, qcad, xplanet,Mesa, convert.</para>
+	</listitem>
+	<listitem>
+	  <para>Programación : C, Lisp, Caml, Java, Perl, Haskell, prolog, mercury, python, ruby, pike, Assembler, ...</para>
+	</listitem>
+	<listitem>
+	  <para>Servidor : Web, FTP, Archivos (NFS), Autenticación, DNS, proxy, firewall, Correo,...</para>
+	</listitem>
+      </itemizedlist>
+    </foil>
+ </section>
+ <section>
+  <title>En Colombia se usa este software</title>
+    <subtitle>Universidad, Comunidad, Empresa y Colegio</subtitle>
+  <foil>
+   <title>Universidades y otros sitios </title>
+      <para>Generalmente el movimiento ha sido alimentado con estudiantes y profesores entusiastas</para>
+   <itemizedlist>
+    <listitem>
+	  <para>Universidad <ulink url="http://www.udistrital.edu.co">Distrital</ulink> con <ulink url="http://glud.udistrital.edu.co">GLUD</ulink></para>
+    </listitem>
+	<listitem>
+	  <para>Fundación Universitaria <ulink url="http://ingenieria.sanmartin.edu.co">San Martín</ulink> con <ulink url="http://ingenieria.sanmartin.edu.co:9673/linux">linux-fusm</ulink></para>
+	</listitem>
+	<listitem>
+	  <para>Escuela de Administración de Negocios (<ulink url="http://ingenieria.ean.edu.co">EAN</ulink>) con <ulink url="http://uvirtual.ean.edu.co/cluxter">Iskariote</ulink></para>
+	</listitem>
+    <listitem>
+      <para>Universidad de los <ulink url="http://www.uniandes.edu.co">Andes</ulink> con <ulink url="linuxcol.uniandes.edu.co">Linuxcol</ulink></para>
+    </listitem>
+    <listitem>
+	  <para>Universidad <ulink url="http://www.ujaveriana.edu.co">Javeriana</ulink> con <ulink url="http://merlinux.javeriana.edu.co">Merlinux</ulink></para>
+    </listitem>
+	<listitem>
+	  <para>Escuela de cadetes de policía <ulink url="http://egsan.policia.gov.co">General Santander</ulink>.</para>
+	</listitem>
+    <listitem>
+	  <para><ulink url="http://www.defensoria.gov.co">Defensoría</ulink> del pueblo</para>
+    </listitem>
+	<listitem>
+	  <para>Cámara de Comercio de <ulink url="http://www.ccb.org.co">Bogotá</ulink></para>
+	</listitem>
+	<listitem>
+	  <para>Instituto Colombiano para el Fomento a la Educación superior (<ulink url="http://www.icfes.gov.co">ICFES</ulink>)</para>
+	</listitem>
+	<listitem>
+	  <para><ulink url="http://ingenieria.sanmartin.edu.co/slec">SLEC</ulink> : Una <ulink url="http://ingenieria.sanmartin.edu.co/~slec/presentacion">presentación</ulink>.</para>
+	</listitem>
+	<listitem>
+	  <para>Estadística de uso de sistemas operativos de libre distribución en <ulink url="http://ingenieria.sanmartin.edu.co/slec">colegios</ulink> colombianos</para>
+	</listitem>
+   </itemizedlist>
+  </foil>
+  <foil>
+   <title>Un caso de estudio : el Gimnasio Fidel Cano</title>
+
+   <para>Los fundamentos:</para>
+   <itemizedlist>
+    <listitem>
+     <para>Concordancia institucional.</para>
+    </listitem>
+    <listitem>
+     <para>Planes Curriculares.</para>
+    </listitem>
+    <listitem>
+     <para>Formación en Valores.</para>
+    </listitem>
+    <listitem>
+     <para>Autoaprendizaje.</para>
+    </listitem>
+	<listitem>
+	  <para>Trabajo Voluntario</para>
+	</listitem>
+   </itemizedlist>
+      <para>Se usa diariamente, computadores de estudiantes, profesores y personal administrativo emplean únicamente Linux.  Se han hecho concursos, día Linux y proyectos de traducción y generación de aplicaciones.  Se busca la autosostenibilidad.</para>
+  </foil>
+
+  <foil>
+      <title>Cómo integrar al <acronym>PEI</acronym></title>
+      <para>Justificación:</para>
+   <itemizedlist>
+    <listitem>
+	  <para>Currículo: Cambio gradual, evolución continua.</para>
+    </listitem>
+    <listitem>
+	  <para>Competencias: Comunicación, expresión, uso de herramientas</para>
+    </listitem>
+    <listitem>
+	  <para>Habilidades: psicomotrices, lógica.</para>
+    </listitem>
+	<listitem>
+	  <para>Uso de acuerdo a la edad, primero gcompris, logo y diccionarios, más adelante manejo del teclado, uso de aplicaciones, programación, documentación, apropiación y generación de conocimiento.</para>
+	</listitem>
+   </itemizedlist>
+      <para>Qué se gana?
+      </para>
+      <itemizedlist>
+	<listitem>
+	  <para>Se puede compartir</para>
+	</listitem>
+	<listitem>
+	  <para>No hay límite en obtención de software</para>
+	</listitem>
+	<listitem>
+	  <para>Se puede armar comunidad</para>
+	</listitem>
+	<listitem>
+	  <para>Consistencia entre lo enseñado y lo que se hace.</para>
+	</listitem>
+	<listitem>
+	  <para>Se puede encontrar mucha información</para>
+	</listitem>
+      </itemizedlist>
+  </foil>
+
+  <foil>
+   <title>Resultados y Planes</title>
+      <para>Hay proyectos en curso y evidencia del trabajo desarrollado, desde el colegio se puede comenzar a trabajar y darse a conocer</para>
+      <itemizedlist>
+	<listitem>
+	  <para>Generación de empleo (exalumno).</para>
+	</listitem>
+	<listitem>
+	  <para>Exposición de Trabajo.</para>
+	</listitem>
+	<listitem>
+	  <para>Motivación por aprender y enseñar.</para>
+	</listitem>
+	<listitem>
+	  <para>Se puede replicar.</para>
+	</listitem>
+	<listitem>
+	  <para>Evidencia de Colaboración : Fundación, Asociación de Padres, voluntarios.  Conexión Inalámbrica.</para>
+	</listitem>
+      </itemizedlist>
+      <para>Hacia el Futuro
+      </para>
+      <itemizedlist>
+	<listitem>
+	  <para>Garantizar sostenibilidad.</para>
+	</listitem>
+	<listitem>
+	  <para>Motivar voluntarios.</para>
+	</listitem>
+	<listitem>
+	  <para>Conectarse a Internet.</para>
+	</listitem>
+	<listitem>
+	  <para>Investigar.</para>
+	</listitem>
+	<listitem>
+	  <para>Fomentar la conciencia social.</para>
+	</listitem>
+      </itemizedlist>
+  </foil>
+  </section>
+  <section>
+    <title>Más allá de la información de coctel</title>
+    <subtitle>Cómo contribuir y cómo conseguir información</subtitle>
+    <foil>
+      <title>Qué se puede hacer?</title>
+      <itemizedlist>
+	<listitem>
+	  <para>Vincularse a una comunidad : <ulink url="http://ingenieria.sanmartin.edu.co/slec">SLEC</ulink>,<ulink url="http://ar.groups.yahoo.com/group/slec/links/Grupos_000999083920/">otras comunidades</ulink></para>
+	</listitem>
+	<listitem>
+	  <para>Contactar a los autores reportando fallas, o mejoras</para>
+	</listitem>
+	<listitem>
+	  <para>Escribir documentación para facilitar el uso.</para>
+	</listitem>
+	<listitem>
+	  <para>Traducir documentación.</para>
+	</listitem>
+	<listitem>
+	  <para>Ayudar a publicar información.</para>
+	</listitem>
+	<listitem>
+	  <para>Programar.</para>
+	</listitem>
+	<listitem>
+	  <para>Dibujar, grabar sonidos, tomar fotos, videos y ceder.</para>
+	</listitem>
+	<listitem>
+	  <para>Ofrecer el trabajo a la comunidad.</para>
+	</listitem>
+	<listitem>
+	  <para>Hacer una buena acción: ayudarle a un amigo, copiar programas que estén cobijados por las licencias adecuadas para que también lo pueda usar, pensar y actuar en pro de todos.</para>
+	</listitem>
+      </itemizedlist>
+    </foil>
+    <foil>
+      <title>Cómo conseguir información?</title>
+      <para>Recursos en muchos idiomas : Primero buscar en ¿google?, leer el manual y referirse a listas de correo para preguntar, buscar experiencias parecidas, preguntarle a un amigo.</para>
+      <itemizedlist>
+	<listitem>
+	  <para>SLEC <ulink url="http://ingenieria.sanmartin.edu.co/slec">http://ingenieria.sanmartin.edu.co/slec</ulink></para>
+	</listitem>
+	<listitem>
+	  <para><ulink url="http://ar.groups.yahoo.com/group/slec/links">Enlaces</ulink> recopilados por SLEC</para>
+	</listitem>
+	<listitem>
+	  <para><ulink url="http://structio.sourceforge.net/guias/AA_Linux_colegio">Guías para aprender a aprender.</ulink></para>
+	</listitem>
+	<listitem>
+	  <para><ulink url="http://structio.sourceforge.net">Structio</ulink> con recursos útiles para educación.</para>
+	</listitem>
+	<listitem>
+	  <para>Libre Documentation Project <ulink url="http://www.tldp.org"></ulink></para>
+	</listitem>
+	<listitem>
+	  <para>Lucas <ulink url="http://es.tldp.org">Comunidad hispana</ulink>.</para>
+	</listitem>
+	<listitem>
+	  <para><ulink url="http://tamarapatino.com/gfc">Gimnasio Fidel Cano.</ulink></para>
+	</listitem>
+      </itemizedlist>
+	  <para><ulink url="mailto:igor@tamarapatino.com"><email>igor@tamarapatino.com</email></ulink></para>
+    </foil>
+ </section>
+
+</slides>
+

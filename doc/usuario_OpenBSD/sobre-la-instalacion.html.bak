@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2. Sobre la instalación</title><meta name="generator" content="DocBook XSL Stylesheets V1.56.1"><link rel="home" href="index.html" title="Notas sobre OpenBSD 3.2 como sistema de escritorio"><link rel="up" href="index.html" title="Notas sobre OpenBSD 3.2 como sistema de escritorio"><link rel="previous" href="index.html" title="Notas sobre OpenBSD 3.2 como sistema de escritorio"><link rel="next" href="paquetes-y-portes.html" title="3. Paquetes y portes"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">2. Sobre la instalación</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="index.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="paquetes-y-portes.html">Siguiente</a></td></tr></table><hr></div><div class="sect1"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="sobre-la-instalacion"></a>2. Sobre la instalación</h2></div></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="prerequisitos-para-la-instalacion"></a>2.1. Prerequisitos para la instalación</h3></div></div><div class="orderedlist"><ol type="1"><li><p>Componentes básicos para la instalación en un medio que
+	    pueda acceder.  Es decir en uno de los siguientes:
+	    </p><div class="itemizedlist"><ul type="disc"><li><p>CD-ROM</p></li><li><p>Partición ext2 (de Linux), ffs (de OpenBSD) o FAT (de
+		DOS y Windows)</p></li><li><p>Conexión a Internet con una tarjeta de red (el disco de 
+	      instalación NO soporta PPP  ni SLIP) y un espejo del servidor
+	      FTP o HTTP que se pueda acceder rapidamente desde su
+	      computador.</p></li></ul></div><p>
+	  </p><p>Es posible (y recomendado) comprar los CDs oficiales de
+	    instalación (3) por US$30, y para redistribuirlo es posible 
+	    hacer un CD propio con una estructura diferente a la del CD 
+	    oficial.  La estructura del CD oficial de OpenBSD
+	    tiene derechos de reproducción restrictivos ---sólo la
+	    estructura, las fuentes son de libre redistribución en su
+	    mayoría cubiertas por la licencia BSD.   Por esto en caso de
+	    comprar CDs oficiales comprelos sólo a los desarrolladores o a
+	    redistribuidores autorizados (los CDs comprados a los
+	    desarrolladores vía Internet si llegan a Colombia).
+	    <a href="http://www.openbsd.org/orders.html" target="_top">http://www.openbsd.org/orders.html</a></p></li><li><p>Contar con hardware soportado.  Hay soporte para diversos
+	      procesadores (alpha, m68k --Amiga--, hp300, hp400, familia
+	      i386, MC680x0/PowerPC --Apple--, Motorola MVME147/16x/17x68K,
+	      Sun4, Sun4C, Sun4m, UltraSparc y vax).
+	    </p><p>
+	      Puede ver la lista completa de los dispositivos para procesadores
+	      i386 que son soportados en:
+	      <a href="http://www.openbsd.org/i386.html" target="_top">http://www.openbsd.org/i386.html</a>
+	      A continuación se presenta un resumen para el caso de OpenBSD
+	      3.2<sup>[<a name="id283732" href="#ftn.id283732">4</a>]</sup>:
+	      </p><div class="variablelist"><dl><dt><span class="term">SCSI</span></dt><dd><p>Adaptec 154x, 152x, 174x, 274x, 284x, 294x, 
+		    394x, 29160, 789x, WD7000, NCR 53c8xx, Buslogic 445, 
+		    54x, 74x, 9xx, Ultrastor 14f, 34f, 24f, Seagate ST01, 
+		    ST02, Future Domain TMC-885, 950, QLogic ISP, AdvanSys
+		</p></dd><dt><span class="term">CDROM, tape drives, tape changers, 
+		  disks</span></dt><dd><p>IDE, MFM, RLL, ATAPI CDROM, CDR, CDRW, DVD.</p></dd><dt><span class="term">Dispositivos seriales</span></dt><dd><p>8250, 16450, 16550, 16650, 16850, 
+		      AST, Boca, PC-RT, Cyclades Cyclom-4, 8, 16Y.
+		  </p></dd><dt><span class="term">Vídeo</span></dt><dd><p>Todas las tarjetas ISA, VLB, PCI VGA,
+		      monocromáticas, Hercules soportadas por XFree86.
+		  </p></dd><dt><span class="term">Ethernet</span></dt><dd><p>Toda `tulip' DC21x4x, Intel EtherExpress
+	       PRO/100. All 3Com network devices except 3c990. RealTek
+	       8029, 8129, 8139, Lite-On PNIC, PNIC-II, VIA Rhine, Winbond, 
+	       Macronix, Davicom,
+	       ASIX, ADMtek, SiS900, 7016, Sundance ST201. PCI/ISA NE2000.
+	       Thunderlan. Adaptec AIC-6915. NatSemi DP83815. SMC EtherEZ
+	       en modo ISA, SMC EtherPower II, SMC/WD 8003, 8013, Elite16.
+		  </p></dd><dt><span class="term">Gigabit</span></dt><dd><p>Intel Pro/1000, SysKonnect, y las
+		      basadas en Alteon.
+		  </p></dd><dt><span class="term">Wireless</span></dt><dd><p>Wavelan, WebGear, Aironet y otras.
+		  </p></dd><dt><span class="term">Buses</span></dt><dd><p>
+		      Además de ISA/EISA y PCI, la versión de OpenBSD 3.2
+		      soporta mejor Carbus, PCMCIA y USB junto con la
+		      mayoría de dispositivos.
+		  </p></dd><dt><span class="term">Dispositivos de criptografía</span></dt><dd><p>Hifn 6500/7751/7811/7951, y
+		      Broadcom Ubsec</p></dd></dl></div><p>
+	    </p></li><li><p>Una partición primaria en un disco duro, que
+	      comience en los primeros 1024 cilindros (preferiblemente
+	      sector 1, cabeza 1 ---en lugar de cabeza 0).  Durante la 
+	      instalación podrá asignar a
+	      esta partición el tipo OpenBSD (A6), podrá dividirla en
+	      &quot;slices&quot; que son como particiones lógicas sólo visibles en
+	      OpenBSD (e.g para <tt>/</tt>,
+	      <tt>/home</tt> y <tt>/var</tt>) sobre
+	      cada una de las cuales podrá emplear el sistema de archivos
+	      de OpenBSD (Fast File System o <tt>ufs</tt> en 
+	      terminología Linux).
+	      También podrá montar particiones de otros sistemas
+	      operativos, por ejemplo <tt>ext2</tt> está bien 
+	      soportado --aunque no hay soporte para sistemas de journaling 
+	      de Linux (ver <a href="interaccion-entre-openbsd-y-linux.html" title="6. Interacción entre OpenBSD y Linux">Interacción
+		entre OpenBSD y Linux</a>).</p></li></ol></div></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="ayudas-para-la-instalacion"></a>2.2. Ayudas para la instalación</h3></div></div><p>A continuación se consigna algunas notas que pueden ser
+	  útiles durante la instalación, pero que no remplazan el documento
+	  de instalación disponible en el CD de instalación
+	  (<tt>INSTALL.i386</tt>) o la <a href="http://www.openbsd.org/faq/faq4.html#4.1" target="_top">guía de
+	    instalación</a>.
+	</p><p>Si tiene el CD oficial, configure su BIOS para que arranque 
+	  por el CD y reinicie.  Si instala por Internet o no puede iniciar 
+	  desde el CD, descargue la imagen del disquete de instalación y 
+	  cree un disquete con esta (está en el CD en el directorio
+	  <tt>3.2/i386</tt> o en <a href="ftp://ftp.openbsd.org" target="_top">ftp://ftp.openbsd.org</a>).
+	  Hay 3 posibles: <tt>floppy.fs</tt> que es el más común, 
+	  <tt>floppyB.fs</tt> que soporta más tipos de discos 
+	  duros y <tt>floppyC.fs</tt> que soporta mejor
+	  portatiles.  Desde un sistema Linux  puede crear el disquete con:
+
+	  </p><pre class="screen">
+dd if=floppy.fs of=/dev/fd0 bs=32k</pre><p>
+  
+	  desde otros sistemas Unix podrá realizar la operación de forma
+	  análoga cambiado el nombre del dispositivo. Desde otros sistemas
+	  operativos puede emplear herramientas disponibles en el
+	  directorio <tt>tools</tt> del CD o en un espejo 
+	  del servidor FTP.
+       	</p><p>Inicie el computador con el disquete de instalación (o el
+	  CD). Este disquete/CD contiene un sistema OpenBSD mínimo que
+	  detectará automáticamente el hardware y lo guiará en el proceso
+	  de instalación.  Si había creado con anterioridad la partición
+	  primaria para OpenBSD iniciada en los primeros 1024 cilíndros,
+	  seguramente no tendrá inconveniente en esta instalación, basta
+	  que tenga en cuenta algunas diferencias entre Linux y OpenBSD:
+	  </p><div class="variablelist"><dl><dt><span class="term">Nombres y manejo de dispositivos</span></dt><dd><div class="table"><a name="id284633"></a><p class="title"><b>Tabla 1. Nombres de dispositivos</b></p><table summary="Nombres de dispositivos" border="1"><colgroup><col><col><col></colgroup><thead><tr><th align="left">Dispositivo</th><th align="left">Linux</th><th align="left">OpenBSD</th></tr></thead><tbody><tr><td align="left">Disco IDE 1 maestro</td><td align="left"><tt>/dev/hda</tt></td><td align="left"><tt>/dev/wd0</tt> o en modo raw
+			  <tt>/dev/rwd0</tt></td></tr><tr><td align="left">Mouse</td><td align="left"><tt>/dev/mouse</tt></td><td align="left"><tt>/dev/wsmouse</tt></td></tr><tr><td align="left">Teclado</td><td align="left"><tt>/dev/kbd</tt></td><td align="left"><tt>/dev/wskbd</tt></td></tr><tr><td align="left">Primera unidad de disquete</td><td align="left"><tt>/dev/fd0</tt></td><td align="left"><tt>/dev/fd0a</tt></td></tr><tr><td align="left">Primera unidad de CD</td><td align="left">Si es IDE algo como
+			  <tt>/dev/hdb</tt>, si es SCSI algo
+			  como <tt>/dev/sda</tt></td><td align="left"><tt>/dev/cd0a</tt></td></tr></tbody></table></div><p>En Linux los controladores están en módulos algunos de
+		los cuales deben configurarse con herramientas externas al
+		kernel o manualmente.  En OpenBSD los controladores están
+		integrados en el kernel y normalmente detectan los
+		dispositivos y se configuran automáticamente.  Si durante el
+		arranque del disquete o del sistema algún dispositivo
+		soportado no logra ser detectado o configurado puede
+		emplear <b>boot -c</b> en el prompt de arranque 
+		para entrar a un
+		editor de las variables de configuración del kernel y
+		ajustar manualmente los recursos para el
+		dispositivo.</p></dd><dt><span class="term">Sistema básico y portes</span></dt><dd><p>Notará que la instalación es muy corta porque
+		sólo se instala un sistema básico, que consta del kernel,
+		comandos básicos (de <tt>/bin</tt> y
+		<tt>/sbin</tt> y <tt>/usr/lib</tt>), 
+		archivos de configuración (de <tt>/etc</tt>)
+		y eventualmente si los escoge al instalar compilador, 
+		documentación y el servidor X-Window. Estos componentes
+		conforman OpenBSD y han sido ampliamente auditados.</p><p>Después de instalar el sistema básico podrá instalar
+		programas que han sido portados a OpenBSD pero que no han
+		pasado por un proceso de revisión como los componentes
+		básicos (ver <a href="paquetes-y-portes.html" title="3. Paquetes y portes">Paquetes y
+		  portes</a>).</p></dd><dt><span class="term">Slices</span></dt><dd><p>OpenBSD divide las particiones del disco en
+		&quot;subparticiones&quot; llamadas slices.  Tenga en cuenta no
+		transpasar los límites de la partición que reservó para
+		OpenBSD al definir slices con el programa
+		<b>disklabel</b> (el
+		mismo programa le ayudará a evitarlo).  Los componentes
+		básicos del sistema estarán especialmente en
+		<tt>/usr</tt>, mientras que los paquetes
+		emplearán <tt>/usr/local</tt></p></dd><dt><span class="term">Interprete de comandos</span></dt><dd><p>Por defecto emplea <b>csh</b> y 
+		  entre los componentes básicos está disponible
+		  <b>ksh</b> que es más parecido a
+		  <b>bash</b>. Hay también un paquete de 
+		  <b>bash</b> que podría instalar después 
+		  de tener en operación el sistema básico.
+	      </p></dd><dt><span class="term">Herramientas UNIX</span></dt><dd><p> Notará también que otros programas (como
+		    <b>sed</b>, <b>awk</b>, 
+		    <b>tar</b> y <b>make</b>) tienden 
+		    a conformar el estándar POSIX pero no algunas
+		    extensiones comunes en sistemas Linux.
+	      	</p></dd></dl></div><p>
+      </p></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="instalacion-y-configuracion-del-sistema-basico"></a>2.3. Instalación y configuración del sistema básico</h3></div></div><p>Como parte del proceso de instalación podrá elegir que
+	componentes básicos instalar entre:
+	</p><div class="variablelist"><dl><dt><span class="term">base32</span></dt><dd><p>Que es indispensable, porque además de la jerarquía de
+		directorios incluye: los 
+		programas de los directorios <tt>/bin</tt>,
+		<tt>/usr/bin</tt>, <tt>/sbin</tt>,
+		<tt>/usr/libexec</tt> y 
+		<tt>/usr/sbin</tt>;
+		las librerías de <tt>/usr/lib</tt>,
+		<tt>/usr/libdata</tt> ;
+	        información de <tt>/usr/share</tt> y de 
+		<tt>/var</tt>.  Entre los programas y servicios
+		auditados que incluye están: herramientas estándar de Unix, 
+		servidor web Apache, OpenSSH, NIS, CVS, sendmail, NTP,
+		IPv6, autenticación con Kerberos, NFS, NAT, AMD, AFS,
+		perl y algunas herramientas de desarrollo.
+	      </p></dd><dt><span class="term">etc32</span></dt><dd><p>También indispensable en sistemas que se
+		instala por primera vez (aunque no necesariamente si se hace
+		actualización). Incluye los
+		archivos de configuración del directorio
+		<tt>/etc</tt> e información complementaria
+		de <tt>/var</tt>.</p></dd><dt><span class="term">comp32</span></dt><dd><p>Que incluye herramientas de desarrollo para
+		Fortran, C y C++.  Las librerías que estas requieren y la
+		documentación de las llamadas al sistema y de las
+		librerías.</p></dd><dt><span class="term">man32</span></dt><dd><p>Que incluye documentación HTML, info y man de 
+		los programas y librerías de base32.</p></dd><dt><span class="term">game32</span></dt><dd><p>Algunos juegos que se instalan en
+		<tt>/usr/games</tt></p></dd><dt><span class="term">misc32</span></dt><dd><p>Que incluye información del directorio
+		<tt>/usr/share</tt> como diccionarios y
+		documentación complementaria.</p></dd><dt><span class="term">xbase32</span></dt><dd><p>Programas básicos de X-Window
+		(<tt>/usr/X11R6/bin</tt>), librerías
+		(<tt>/usr/X11R6/lib</tt>  y su
+		documentación (<tt>/usr/X11R6/man</tt>.
+	    </p></dd><dt><span class="term">xfont32</span></dt><dd><p>Tipos de letra para X-Window
+		(<tt>/usr/X11R6/lib/X11/fonts</tt>), para
+		diversas codificaciones e idiomas, en resoluciones 100ppi
+		y 75ppi.</p></dd><dt><span class="term">xserv32</span></dt><dd><p>Servidores X-Window para diversas tarjetas de
+		video, librerías para soportar fuentes y 
+		documentación.</p></dd><dt><span class="term">xshare32</span></dt><dd><p>Encabezados y documentación complementaria de 
+		X-Window</p></dd></dl></div><p>
+	la instalación de los componentes indispensables (base32 y etc32) 
+	requiere menos de 80MB, y la instalación de todos requiere menos
+	de 270MB.  Como </p><p>Una vez se instalen el kernel genérico (<tt>/bsd</tt>)
+       	y los componentes que eligió, podrá reiniciar su
+	computador, y configurando la partición como activa (por ejemplo
+	con <b>fdisk</b>) o configurando LILO (ver 
+	<a href="interaccion-entre-openbsd-y-linux.html" title="6. Interacción entre OpenBSD y Linux">Interacción entre
+	  Linux y OpenBSD</a>) podrá entrar a su sistema OpenBSD.
+      </p><p>Cuando lo haga es recomendable que consulte 
+	<tt>man afterboot</tt> que incluye una lista de chequeo 
+	de cosas por hacer después de la instalación.  </p></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="inicio-del-sistema"></a>2.4. Inicio del sistema</h3></div></div><p>Notará que el arranque se realiza de acuerdo a los
+	archivos <tt>/etc/rc</tt> (que no debe modificarse) y de
+	<tt>/etc/rc.local</tt>, en el segundo pueden agregarse los
+	servicios adicionales que se deseen.  Estos scripts se configuran 
+	con las variables de <tt>/etc/rc.conf</tt> (que tampoco se
+	deben modificar) y <tt>/etc/rc.conf.local</tt>, en
+	el segundo pueden modificarse las variables, teniendo en cuenta que
+	si el valor de algunas es <tt>NO</tt> el servicio no se
+	activa, mientras que otro valor activa el servicio y es pasado como
+	parámetro (si no se desean parámetros adicionales puede simplemente
+	asignarse &quot;&quot;). Por ejemplo para iniciar el servidor LPD:
+	</p><pre class="screen">
+lpd_flags=&quot;&quot;
+	</pre><p>
+      </p></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="configuracion-de-xfree86"></a>2.5. Configuración de XFree86</h3></div></div><p>El sistema básico que instaló no arrancará X-Window por defecto, 
+	para usarlo debió elegir los componentes apropiados durante la
+	instalación (i.e xbase32, xfont32, xserv32, xshare32), 
+	configurar XFree86 y si lo desea iniciar
+	<b>xdm</b>.</p><p>Para configurar XFree86 puede emplear la herramienta
+	<b>xf86cfg</b>:
+	</p><pre class="screen">
+cd /etc/X11
+ln -s /usr/X11R6/lib/X11/XF86Config XF86Config
+xf86cfg </pre><p>
+         o si el anterior procedimiento no funciona, intente con xf86config o
+	 editando directamente <tt>/etc/X11/XF86Config</tt>.</p><p> Después de probar una configuración, puede emplear
+	 <b>startx</b> para iniciar XFree86.  La bitácora de
+	 arranque de XFree86 quedará en 
+	 <tt>/var/log/XFree86.0.log</tt> incluyendo 
+	 errores si los hay.  </p><p>
+	Una vez logre configurar XFree86 puede activar XDM agregando la
+	siguiente línea al archivo <tt>/etc/rc.conf.local</tt>
+	(creelo si no existe):
+       	</p><pre class="screen">
+	  xdm_flags=&quot;&quot; </pre><p> 
+      </p><div class="sect3"><div class="titlepage"><div><h4 class="title"><a name="tipos-de-letra"></a>2.5.1. Tipos de letra</h4></div></div><p>Las fuentes empleadas por X son de tipo PCF.  
+	  xmbdfed es un editor de fuentes (paquete xmbdfed) que permite 
+	  editar fuentes tipo BDF.
+	  Puede convertirse de BDF a PCF con bdf2pcf (y viceversa
+	  con pcf2bdf).
+	  Los editores 
+	  de fuentes Un editor de tipos de letras es xmbdfed disponible como
+	  paquete.</p></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.id283732" href="#id283732">4</a>] </sup>Información del 
+		archivo <tt>HARDWARE</tt> del CD de 
+		instalación.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="index.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="paquetes-y-portes.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">Notas sobre OpenBSD 3.2 como sistema de escritorio </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 3. Paquetes y portes</td></tr></table></div></body></html>

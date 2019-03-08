@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Notas sobre OpenBSD 3.2 como sistema de escritorio</title><meta name="generator" content="DocBook XSL Stylesheets V1.56.1"><meta name="description" content="Estas notas presentan algo de la experiencia que el autor ha 
+	ganado como usuario de OpenBSD como sistema de escritorio después 
+	de haber empleado Linux.
+      "><link rel="home" href="index.html" title="Notas sobre OpenBSD 3.2 como sistema de escritorio"><link rel="next" href="sobre-la-instalacion.html" title="2. Sobre la instalación"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Notas sobre OpenBSD 3.2 como sistema de escritorio</th></tr><tr><td width="20%" align="left"> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="sobre-la-instalacion.html">Siguiente</a></td></tr></table><hr></div><div class="article"><div class="titlepage"><div><h2 class="title"><a name="id281383"></a>Notas sobre OpenBSD 3.2 como sistema de escritorio</h2></div><div><div class="authorgroup"><div class="author"><h3 class="author">Vladimir Támara Patiño</h3></div></div></div><div><div class="legalnotice"><p>Este documento y sus fuentes se ceden al dominio público en
+	2002.  Se actualizaron por última vez en 28/02/2003.  
+	No se ofrece garantía alguna, por el contrario se aprecia que se 
+	envien correcciones y sugerencias al autor.  Este escrito se 
+	dedica a Dios.</p><p>
+	Este documento se publica en Internet usando la infraestructura 
+	brindada gratuitamente por la comunidad <a href="http://ingenieria.sanmartin.edu.co/~slec/" target="_top">SLEC</a>. 
+	La versión publicada más reciente está disponible
+	en <a href="http://ingenieria.sanmartin.edu.co/~slec/doc/usuario_OpenBSD/" target="_top">HTML</a>, como <a href="http://ingenieria.sanmartin.edu.co/~slec/doc/usuario_OpenBSD//usuario_OpenBSD-0.2.ps.gz" target="_top">PostScript
+	  comprimido</a> y como 
+	<a href="http://ingenieria.sanmartin.edu.co/~slec/doc/usuario_OpenBSD//usuario_OpenBSD-0.2.pdf" target="_top">PDF</a>.
+	También están publicadas
+	<a href="http://ingenieria.sanmartin.edu.co/~slec/doc/usuario_OpenBSD//usuario_OpenBSD-0.2.tgz" target="_top">sus fuentes en
+	  DocBook comprimidas</a>.  La versión de desarrollo está 
+	en el
+	<a href="http://ingenieria.sanmartin.edu.co/cgi-bin/viewcvs.cgi/" target="_top">
+	  repositorio CVS de la comunidad SLEC</a>.
+      </p></div></div><div><div class="abstract"><p class="title"><b>Resumen</b></p><p>Estas notas presentan algo de la experiencia que el autor ha 
+	ganado como usuario de OpenBSD como sistema de escritorio después 
+	de haber empleado Linux.
+      </p></div></div><hr></div><div class="toc"><p><b>Tabla de contenidos</b></p><dl><dt>1. <a href="index.html#introduccion">Introducción</a></dt><dd><dl><dt>1.1. <a href="index.html#id283427">Diferencias entre OpenBSD y Linux</a></dt></dl></dd><dt>2. <a href="sobre-la-instalacion.html">Sobre la instalación</a></dt><dd><dl><dt>2.1. <a href="sobre-la-instalacion.html#prerequisitos-para-la-instalacion">Prerequisitos para la instalación</a></dt><dt>2.2. <a href="sobre-la-instalacion.html#ayudas-para-la-instalacion">Ayudas para la instalación</a></dt><dt>2.3. <a href="sobre-la-instalacion.html#instalacion-y-configuracion-del-sistema-basico">Instalación y configuración del sistema básico</a></dt><dt>2.4. <a href="sobre-la-instalacion.html#inicio-del-sistema">Inicio del sistema</a></dt><dt>2.5. <a href="sobre-la-instalacion.html#configuracion-de-xfree86">Configuración de XFree86</a></dt><dd><dl><dt>2.5.1. <a href="sobre-la-instalacion.html#tipos-de-letra">Tipos de letra</a></dt></dl></dd></dl></dd><dt>3. <a href="paquetes-y-portes.html">Paquetes y portes</a></dt><dd><dl><dt>3.1. <a href="paquetes-y-portes.html#paquetes">Paquetes</a></dt><dt>3.2. <a href="paquetes-y-portes.html#portes">Portes</a></dt><dt>3.3. <a href="paquetes-y-portes.html#emulacion">Emulación</a></dt></dl></dd><dt>4. <a href="configuracion-de-algunos-programas.html">Configuración de algunos programas</a></dt><dd><dl><dt>4.1. <a href="configuracion-de-algunos-programas.html#kernel">Kernel</a></dt><dd><dl><dt>4.1.1. <a href="configuracion-de-algunos-programas.html#compilacion-del-kernel">Compilación del kernel</a></dt></dl></dd><dt>4.2. <a href="configuracion-de-algunos-programas.html#ld">ld</a></dt><dt>4.3. <a href="configuracion-de-algunos-programas.html#pdksh">pdksh (ksh)</a></dt><dt>4.4. <a href="configuracion-de-algunos-programas.html#blackbox">BlackBox</a></dt><dt>4.5. <a href="configuracion-de-algunos-programas.html#x-window">X-Window</a></dt><dd><dl><dt>4.5.1. <a href="configuracion-de-algunos-programas.html#x-window-fuentes">Fuentes</a></dt></dl></dd><dt>4.6. <a href="configuracion-de-algunos-programas.html#tetex-y-ghostview">teTeX y Ghostview</a></dt><dt>4.7. <a href="configuracion-de-algunos-programas.html#ocaml">Ocaml</a></dt><dt>4.8. <a href="configuracion-de-algunos-programas.html#ftp">ftp</a></dt><dt>4.9. <a href="configuracion-de-algunos-programas.html#sudo">sudo</a></dt><dt>4.10. <a href="configuracion-de-algunos-programas.html#ssh">ssh</a></dt><dd><dl><dt>4.10.1. <a href="configuracion-de-algunos-programas.html#uso-de-ssh">Uso de ssh</a></dt><dt>4.10.2. <a href="configuracion-de-algunos-programas.html#configuracion-servidor-ssh">Configuración del servidor ssh</a></dt></dl></dd><dt>4.11. <a href="configuracion-de-algunos-programas.html#apache">Apache</a></dt><dt>4.12. <a href="configuracion-de-algunos-programas.html#docbook">DocBook</a></dt><dd><dl><dt>4.12.1. <a href="configuracion-de-algunos-programas.html#sgml-4-1-con-dsssl">SGML 4.1 con DSSSL</a></dt><dt>4.12.2. <a href="configuracion-de-algunos-programas.html#xml-4-1-2-con-xsl">XML 4.1.2 con XSL</a></dt></dl></dd></dl></dd><dt>5. <a href="configuracion-de-algunos-dispositivos.html">Configuración de algunos dispositivos</a></dt><dd><dl><dt>5.1. <a href="configuracion-de-algunos-dispositivos.html#Impresora">Impresora</a></dt><dt>5.2. <a href="configuracion-de-algunos-dispositivos.html#discos-duros">Discos duros</a></dt><dd><dl><dt>5.2.1. <a href="configuracion-de-algunos-dispositivos.html#zonas-de-intercambio">Zonas de intercambio (swap)</a></dt></dl></dd><dt>5.3. <a href="configuracion-de-algunos-dispositivos.html#disquetes-e-imagenes-de-disquetes">Disquetes e imagenes de disquetes</a></dt><dt>5.4. <a href="configuracion-de-algunos-dispositivos.html#cd-rom">CD-ROM</a></dt><dt>5.5. <a href="configuracion-de-algunos-dispositivos.html#teclado-en-espanol">Teclado en español</a></dt></dl></dd><dt>6. <a href="interaccion-entre-openbsd-y-linux.html">Interacción entre OpenBSD y Linux</a></dt><dd><dl><dt>6.1. <a href="interaccion-entre-openbsd-y-linux.html#arranque-multiple">Arranque múltiple</a></dt><dt>6.2. <a href="interaccion-entre-openbsd-y-linux.html#montaje-de-directorios-del-otro-sistema">Montar directorios del otro sistema</a></dt></dl></dd><dt>A. <a href="caracteres-que-pueden-componerse.html">Caracteres que pueden componerse</a></dt></dl></div><div class="sect1"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="introduccion"></a>1. Introducción</h2></div></div><p> OpenBSD es un sistema operativo tipo Unix de libre
+      redistribución<sup>[<a name="id283042" href="#ftn.id283042">1</a>]</sup>.  
+      Es descendiente directo de NetBSD que a su
+      vez desciende de los sistemas Unix desarrollados en la Universidad de
+      Berkeley i.e. BSD<sup>[<a name="id283047" href="#ftn.id283047">2</a>]</sup>.  Sus puntos más 
+      fuertes son estandarización 
+      (cumplir POSIX), seguridad y criptografía.  Para lograr 
+      seguridad y descubrir fallas sus desarrolladores examinan 
+      detalladamente y mejoran (auditan) las fuentes de los componentes 
+      básicos del sistema operativo<sup>[<a name="id283057" href="#ftn.id283057">3</a>]</sup>.  
+      Este trabajo  ha permitido
+      liberar varias versiones de OpenBSD desde hace más de 7 años con tan sólo 
+      una falla de seguridad conocida en los componentes básicos,  en la 
+      instalación por defecto (apropiada para un servidor conectado a 
+      Internet con OpenSSH,
+      NTP y 
+      sendmail).
+    </p><a class="indexterm" name="id283090"></a><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="id283427"></a>1.1. Diferencias entre OpenBSD y Linux</h3></div></div><div class="itemizedlist"><ul type="disc"><li><p> Linux soporta más hardware y cuenta con muchas más
+	  aplicaciones, sin embargo la autodetección de hardware de OpenBSD
+	  es mejor y este sistema cuenta con capas de emulación que
+	  permiten ejecutar algunas aplicaciones para Linux, BSDI y 
+	  FreeBSD (en i386).</p></li><li><p>Mientras que hay diversas distribuciones de Linux, cada una
+	  con su inicialización, sistema de paquetes y programas
+	  particulares, hay una sola &quot;distribución&quot; OpenBSD mantenida y
+	  auditada por los mismos desarrolladores (i.e mantienen kernel, 
+	  porte del compilador, librería de C, sistema de paquetes,
+	  documentación, etc.)
+	</p></li><li><p> OpenBSD no ha sido diseñado como sistema operativo de
+	  escritorio, sino para manejar un servidor conectado a Internet de
+	  forma extra-segura ---sin embargo estas notas presentan OpenBSD
+	  como sistema de escritorio.</p></li><li><p> Las fuentes de OpenBSD son en la humilde opinión del autor
+	  más legibles y mejor documentadas, los mismos desarrolladores
+	  mantienen excelentes páginas man.</p></li><li><p> La licencia del kernel de OpenBSD y de la mayoría de
+	  componentes del sistema básico es BSD, aunque todo el sistema
+	  depende de una versión auditada de gcc.
+	</p></li></ul></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.id283042" href="#id283042">1</a>] </sup>La mayoría de los componentes básicos de
+	OpenBSD están cubiertos por licencias tipo BSD, que permiten 
+	copia, redistribución, modificación, inclusión en programas con
+	licencia diferente y exigen únicamente crédito.</p></div><div class="footnote"><p><sup>[<a name="ftn.id283047" href="#id283047">2</a>] </sup>BSD es sigla de
+	<i>Berkeley Software
+	  Distribution</i>.</p></div><div class="footnote"><p><sup>[<a name="ftn.id283057" href="#id283057">3</a>] </sup>Algunas técnicas que 
+	emplean para mejorar las fuentes de los portes se describen 
+	en <a href="http://www.openbsd.org/porting.html" target="_top">
+	  http://www.openbsd.org/porting.html</a></p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="sobre-la-instalacion.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"> </td><td width="40%" align="right" valign="top"> 2. Sobre la instalación</td></tr></table></div></body></html>

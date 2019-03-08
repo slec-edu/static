@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3. Paquetes y portes</title><meta name="generator" content="DocBook XSL Stylesheets V1.56.1"><link rel="home" href="index.html" title="Notas sobre OpenBSD 3.2 como sistema de escritorio"><link rel="up" href="index.html" title="Notas sobre OpenBSD 3.2 como sistema de escritorio"><link rel="previous" href="sobre-la-instalacion.html" title="2. Sobre la instalación"><link rel="next" href="configuracion-de-algunos-programas.html" title="4. Configuración de algunos programas"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3. Paquetes y portes</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sobre-la-instalacion.html">Anterior</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="configuracion-de-algunos-programas.html">Siguiente</a></td></tr></table><hr></div><div class="sect1"><div class="titlepage"><div><h2 class="title" style="clear: both"><a name="paquetes-y-portes"></a>3. Paquetes y portes</h2></div></div><p>Diversos programas han sido portados a OpenBSD, a las fuentes
+      portadas se les llama portes y a los binarios de alguno de los
+      portes compilados para alguna plataforma se les llama paquetes.</p><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="paquetes"></a>3.1. Paquetes</h3></div></div><p>
+	Cada paquete es un archivo <tt>.tgz</tt> que incluye 
+	información de dependencias y scripts para instalar
+	y desinstalar.  
+       	Para manejarlos se emplean los programas
+	<b>pkg_add</b>, <b>pkg_delete</b>,
+	<b>pkg_info</b> y <b>pkg_create</b>.  
+	El programa <b>pkg_add</b> instala un paquete y
+	todos los que este requiera, usando para descargarlos lo(s)
+	repositorio(s) especificada(s) en la variable de ambiente
+	<tt>PKG_PATH</tt>, por esto en el archivo
+	<tt>~/.profile</tt> o en
+	<tt>~/.xsession</tt> de root vale la pena agregar: 
+	</p><pre class="screen">
+	export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/3.2/packages/i386 </pre><p>
+	o la vía del CD-ROM 1 o una vía de un espejo más rápido para su caso.  
+	Una vez establecida esta variable, para agregar por ejemplo el paquete 
+	<tt>vim-6.1.184-no_x11.tgz</tt>:
+        </p><pre class="screen">
+pkg_add $PKG_PATH/vim-6.1.184-no_x11.tgz </pre><p>
+	Puede ver la lista de paquetes instalados en su sistema con 
+	<b>pkg_info -a</b>, podrá desinstalar uno con
+       	<b>pkg_delete</b> seguido del nombre del paquete (con
+	la opción <tt>-f</tt> se forzara la eliminación aún
+	si hay paquetes que dependan del que quita ---que puede ser útil
+	si está actualizando un paquete).
+      </p><p>Podrá ver los paquetes disponibles para instalar en el primer 
+	correo que llega a la cuenta root (use <b>mail</b> para 
+	verlo) o en 
+	<a href="http://www.openbsd.org/3.2_packages/i386.html" target="_top">
+	  http://www.openbsd.org/3.2_packages/i386.html</a>. A
+	continuación destacamos algunos que permiten tener un ambiente
+	para producir documentos y programar (según el gusto del autor de este
+	escrito): 
+
+	</p><div class="table"><a name="id294665"></a><p class="title"><b>Tabla 2. Algunos paquetes disponibles apropiados
+	    para preparación de documentos</b></p><table summary="Algunos paquetes disponibles apropiados
+	    para preparación de documentos" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">vim-6.1.184-no_x11.tgz</td><td align="left">Editor vi mejorado.</td></tr><tr><td align="left">teTeX_base-1.0.7.tgz</td><td align="left">Ejecutables de TeX.</td></tr><tr><td align="left">teTeX_texmf-1.0.2.tgz</td><td align="left">Archivos de soporte de TeX.</td></tr><tr><td align="left">libxslt-1.0.20.tgz</td><td align="left">Librería para procesamiento de XSLT incluye el interprete de XSLT xsltproc.</td></tr><tr><td align="left">docbook-4.1.2.tgz</td><td align="left">DTD de DocBook.</td></tr><tr><td align="left">docbook-dsssl-1.72.tgz</td><td align="left">Hojas de éstilo modulares DSSSL para DocBook.</td></tr><tr><td align="left">openjade-1.3.tgz</td><td align="left">Parser XML y motor de DSSSL.</td></tr><tr><td align="left">jadetex-3.11.tgz</td><td align="left">Macros para OpenJade para TeX.</td></tr><tr><td align="left">mtools-3.9.8-20010819.tgz</td><td align="left">Herramientas para manejar disquetes DOS.</td></tr><tr><td align="left">tcl-8.3.4.tgz</td><td align="left">Tool Command Language.</td></tr><tr><td align="left">tk-8.3.4.tgz</td><td align="left">Herramientas gráficas para TCL.</td></tr><tr><td align="left">gimp-1.2.3.tgz</td><td align="left">Graficador similar a Photo Shop.</td></tr><tr><td align="left">gv-3.5.8.tgz</td><td align="left">Visualizador de PostScript y PDF.</td></tr><tr><td align="left">w3m-0.3.1.tgz</td><td align="left">Navegador web modo texto.</td></tr><tr><td align="left">xmix-2.1.tgz</td><td align="left">Mezclador.</td></tr><tr><td align="left">xcdplayer-2.2.tgz</td><td align="left">Reproductor de CDs.</td></tr><tr><td align="left">sox-12.17.3.tgz</td><td align="left">Reproductor y conversor de formatos de sonido.</td></tr><tr><td align="left">xmms-1.2.7</td><td align="left">Reproductor Multimedia.</td></tr><tr><td align="left">vorbis-tools-1.0</td><td align="left">Para escuchar y codificar
+    en formato Ogg Vorbis.</td></tr><tr><td align="left">antiword-0.33</td><td align="left">Convierte formato de MS Word (.doc)
+    a texto plano.</td></tr><tr><td align="left">freetype-1.3.1.tgz</td><td align="left">Motor para emlear fuentes TrueType</td></tr><tr><td align="left">ocaml-3.06.tgz</td><td align="left">Lenguaje funcional Ocaml. </td></tr><tr><td align="left">graphviz-1.7.6.tgz</td><td align="left">Visualizador de grafos.</td></tr><tr><td align="left">hevea-1.05.tgz</td><td align="left">Conversor de LaTeX a HTML.</td></tr><tr><td align="left">ispell-3.2.06.tgz</td><td align="left">Corrector ortográfico</td></tr><tr><td align="left">xfce-3.8.16.tgz</td><td align="left">Escritorio liviano</td></tr></tbody></table></div><p>
+
+Además de los anteriores si su computador está en una red:
+
+	</p><div class="table"><a name="id352094"></a><p class="title"><b>Tabla 3. Algunos paquetes disponibles para
+	    computadores en red</b></p><table summary="Algunos paquetes disponibles para
+	    computadores en red" border="1"><colgroup><col><col></colgroup><thead><tr><th align="left">Paquete</th><th align="left">Descripción</th></tr></thead><tbody><tr><td align="left">mutt-1.4i.tgz</td><td align="left">MUA</td></tr><tr><td align="left">exim-3.34.tgz</td><td align="left">MTA con una configuración sencilla</td></tr><tr><td align="left">procmail-3.22.tgz</td><td align="left">Para procesar correos automáticamente</td></tr></tbody></table></div><p>
+
+</p></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="portes"></a>3.2. Portes</h3></div></div><p> Aunque NetBSD y FreeBSD tienen más programas portados que
+	OpenBSD, la colección de portes de OpenBSD ya cuenta con más de
+	1600 programas.  Puede verse la evolución de los portes en: 
+        </p><pre class="screen">
+http://www.openbsd.org/portsplus/</pre><p>
+      y más información sobre portes y paquetes en:
+        </p><pre class="screen">
+http://www.openbsd.org/ports.html</pre><p>
+      </p><p> Si desea ayudar a portar aplicaciones a OpenBSD o tener a mano
+      las fuentes de los portes (diferencias, makefiles y scripts):
+      </p><pre class="screen">
+cd /usr
+export CVSROOT=anoncvs@anoncvs.de.openbsd.org:/cvs
+cvs -z3 -q get -rOPENBSD_3_2 -P ports </pre><p>
+    </p><p>
+      La vía para <tt>CVSROOT</tt> adaptela a su servidor 
+      más cercano, escogiendo entre los disponibles en:
+      <a href="http://www.openbsd.org/anoncvs.html" target="_top">
+	http://www.openbsd.org/anoncvs.html</a>.
+    </p><p> Para compilar e instalar un porte (tras la compilación
+      normalmente se crea un paquete), basta pasar al directorio del porte
+      y como usuario root ejecutar:
+      </p><pre class="screen">
+make install </pre><p>
+
+      El respectivo <tt>Makefile</tt> obtendrá las fuentes
+      originales de la red, aplicará los cambios necesarios, compilará, 
+      creará un paquete y lo instalará (posteriormente podrá eliminar el 
+      paquete con
+      <b>pkg_delete</b> ver <a href="paquetes-y-portes.html#paquetes" title="3.1. Paquetes">Paquetes</a>).  </p></div><div class="sect2"><div class="titlepage"><div><h3 class="title"><a name="emulacion"></a>3.3. Emulación</h3></div></div><p>Algunas aplicaciones cuyas fuentes no han sido portadas a OpenBSD
+      pueden ejecutarse con las capas de emulación de OpenBSD. En particular
+      para i386 hay capas de emulación para binarios de Linux, FreeBSD,
+      BSDI y SCO Unix (binarios iBCS2). Aquí se describe brevemente la
+      emulación de binarios para Linux (ver <tt>man
+	compat_linux</tt>).</p><p> Para comenzar rapidamente puede utilizar el paquete
+      <tt>redhat_base-6.2p5</tt> que instalará librerías compartidas 
+      y archivos básicos de una distribución Redhat con 
+      <tt>libc 2.1.3</tt>
+      (que resulta ser la misma empleada por Debian 2.2).  Después de
+      hacer esto o de copiar nuevas librerías que algún programa requiera,
+      debe ejecutar <tt>/emul/linux/sbin/ldconfig</tt>.  Para 
+      automatizar esto durante cada arranque puede agregar a su archivo
+      <tt>/etc/rc.local</tt>: 
+      </p><pre class="screen">
+if (test -x /emul/linux/sbin/ldconfig) then {
+      /emul/linux/sbin/ldconfig
+} </pre><p>
+    </p><p>Al instalar <tt>redhat_base</tt> se creará 
+      <tt>/emul/linux</tt> y en ese
+      directorio quedará una jerarquía de directorios como la raíz de un
+      sistema Linux (excepto por que no tiene kernel).</p><p>Al ejecutar un binario para Linux, OpenBSD transformará los
+      nombres que el programa requiera suponiendo que 
+      <tt>/emul/linux</tt> es la 
+      raíz.  Si un archivo que se debe leer no es encontrado allí, OpenBSD
+      intenta como segunda opción en la raíz real del sistema.  Por ejemplo
+      si después de instalar <tt>redhat_base</tt> intenta:
+      </p><pre class="screen">
+/emul/linux/bin/cp /bin/bash / </pre><p>
+
+      es decir ejecuta <b>cp</b> de Linux, el archivo 
+      <tt>/emul/linux/bin/bash</tt> (que es
+      dejado allí por <tt>redhat_base</tt>) será copiado a 
+      <tt>/emul/linux</tt>. Pero si ejecuta
+
+      </p><pre class="screen">
+/emul/linux/bin/cp /bin/ksh / </pre><p>
+
+      como el archivo <tt>/emul/linux/bin/ksh</tt> no existe 
+      (<tt>redhat_base</tt> no lo incluye),
+      se copiará el archivo <tt>/bin/ksh</tt>
+      (<b>ksh</b> de OpenBSD) en la raíz de Linux
+      (i.e <tt>/emul/linux</tt>).  </p><p> Si desea ver su sistema como si la raíz fuera
+      <tt>/emul/linux</tt>
+      (digamos para ejecutar varios programas Linux) puede emplear:
+
+      </p><pre class="screen">
+/emul/linux/bin/bash </pre><p>
+
+      que iniciará un interprete de comandos compilado para Linux (así 
+      que las vías de ese interprete de comandos son las que ven todos 
+      los binarios de Linux).
+    </p><p>Aunque la emulación no es perfecta funcionan varios programas
+      (como el compilador gcc), de hecho algunos paquetes oficiales de 
+      OpenBSD emplean esta capa (e.g acroread), mientras que otros emplean
+      la capa para emular BSDi (e.g netscape) y FreeBSD (e.g jdk-1.1.8).</p><p>Para emplear una distribución de Linux diferente 
+      basta asegur que pueda accederse desde 
+      <tt>/emul/linux</tt>.  Por ejemplo si en la partición 
+      <tt>/dev/wd0i</tt> tiene un sistema Debian, puede 
+      agregar la siguiente línea a <tt>/etc/fstab</tt> para 
+      montarla automáticamente durante el arranque:
+      </p><pre class="screen">
+/dev/wd0i /mnt/debian ext2fs rw 1 1 </pre><p>
+      y un enlace de <tt>/emul/linux</tt> a
+      <tt>/mnt/debian</tt> (creando antes el directorio
+      <tt>/mnt/debian</tt>).  
+    </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sobre-la-instalacion.html">Anterior</a> </td><td width="20%" align="center"><a accesskey="u" href="index.html">Subir</a></td><td width="40%" align="right"> <a accesskey="n" href="configuracion-de-algunos-programas.html">Siguiente</a></td></tr><tr><td width="40%" align="left" valign="top">2. Sobre la instalación </td><td width="20%" align="center"><a accesskey="h" href="index.html">Inicio</a></td><td width="40%" align="right" valign="top"> 4. Configuración de algunos programas</td></tr></table></div></body></html>
